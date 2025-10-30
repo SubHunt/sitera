@@ -1,0 +1,14 @@
+# Base requirements
+Django==5.2.7
+Pillow==12.0.0
+psycopg2==2.9.11
+python-decouple==3.8
+django-crispy-forms==2.1
+crispy-bootstrap5==0.7
+
+# Development requirements
+django-debug-toolbar==4.2.0
+django-extensions==3.2.3
+
+# Production requirements
+gunicorn==21.2.0
