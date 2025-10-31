@@ -62,11 +62,11 @@
                 </div>
                 
                 <!-- Search -->
-                <div class="hidden md:flex items-center">
+                <div class="hidden md:flex items-center relative z-50">
                     <div class="relative">
                         <input
                             type="text"
-                            id="search-input"
+                            id="header-search-input"
                             placeholder="Поиск"
                             class="w-64 px-4 py-2 pr-10 border border-sitera-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent"
                         >
@@ -77,7 +77,7 @@
                         </button>
                         
                         <!-- Search Results Dropdown -->
-                        <div id="search-results" class="absolute top-full left-0 right-0 mt-2 bg-white border border-sitera-border rounded-lg shadow-lg hidden z-50">
+                        <div id="header-search-results" class="fixed top-32 left-1/2 transform -translate-x-1/2 bg-white border border-sitera-border rounded-lg shadow-2xl hidden z-[9999] w-96 max-h-96 overflow-y-auto">
                             <!-- Search results will be populated here -->
                         </div>
                     </div>
@@ -225,7 +225,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}?v={% now "YmdHis" %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

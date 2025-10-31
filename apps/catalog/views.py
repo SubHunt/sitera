@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.http import JsonResponse
+from django.db.models import Q
 from .models import Category, Product
 
 
@@ -73,3 +75,46 @@ class ProductDetailView(DetailView):
         context['similar_products'] = similar_products
         context['images'] = product.images.all().order_by('order')
         return context
+
+
+def search_products(request):
+    """
+    API эндпоинт для поиска товаров
+    """
+    query = request.GET.get('q', '').strip()
+
+    if not query or len(query) < 2:
+        return JsonResponse({'products': []})
+
+    # Ищем товары по названию, артикулу и описанию
+    products = Product.objects.filter(
+        Q(title__icontains=query) |
+        Q(article__icontains=query) |
+        Q(description__icontains=query) |
+        Q(category__name__icontains=query),
+        is_active=True
+        # Ограничиваем до 10 результатов
+    ).select_related('category').prefetch_related('images')[:10]
+
+    products_data = []
+    for product in products:
+        product_data = {
+            'id': product.id,
+            'title': product.title,
+            'url': product.get_absolute_url(),
+            'category': product.category.name,
+            'article': product.article,
+            'description': product.description[:100] + '...' if len(product.description) > 100 else product.description,
+        }
+
+        # Добавляем изображение если есть
+        if product.preview_image:
+            product_data['image'] = product.preview_image.url
+        elif product.images.first():
+            product_data['image'] = product.images.first().image.url
+        else:
+            product_data['image'] = None
+
+        products_data.append(product_data)
+
+    return JsonResponse({'products': products_data})

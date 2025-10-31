@@ -8,4 +8,5 @@ urlpatterns = [
     path('category/<slug:slug>/',
          views.CategoryDetailView.as_view(), name='category'),
     path('product/<slug:slug>/', views.ProductDetailView.as_view(), name='product'),
+    path('api/search/', views.search_products, name='search_products'),
 ]
