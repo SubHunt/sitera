@@ -1,0 +1,494 @@
+{
+  "categories": [
+    {
+      "name": "AV-коммутация",
+      "slug": "av-kommutatsiya",
+      "description": "Коммутационное AV-оборудование",
+      "image": "categories/av-switching.svg"
+    },
+    {
+      "name": "Архивные модели",
+      "slug": "arkhivnye-modeli",
+      "description": "Архивные модели оборудования со скидками",
+      "image": "categories/archived-models.svg"
+    },
+    {
+      "name": "Видеокамеры и устройства записи",
+      "slug": "videokamery-i-ustroistva-zapisi",
+      "description": "Профессиональные видеокамеры и оборудование для записи",
+      "image": "categories/cameras.svg"
+    },
+    {
+      "name": "Видеоконференцтерминалы",
+      "slug": "videokonferentsterminaly",
+      "description": "",
+      "image": "categories/video-conference.svg"
+    },
+    {
+      "name": "Внутренние LED-экраны",
+      "slug": "vnutrennie-led-ekrany",
+      "description": "",
+      "image": "categories/video-walls.svg"
+    },
+    {
+      "name": "Готовые комплекты оборудования",
+      "slug": "gotovye-komplekty-oborudovaniya",
+      "description": "Готовые комплекты оборудования для различных задач",
+      "image": "categories/complete-kits.svg"
+    },
+    {
+      "name": "Дискуссионные системы",
+      "slug": "diskussionnye-sistemy",
+      "description": "",
+      "image": "categories/audio-systems.svg"
+    },
+    {
+      "name": "Документ-камеры",
+      "slug": "dokument-kamery",
+      "description": "Цифровые документ-камеры для презентаций",
+      "image": "categories/document-cameras.svg"
+    },
+    {
+      "name": "Интерактивные панели",
+      "slug": "interaktivnye-paneli",
+      "description": "",
+      "image": "categories/interactive-devices.svg"
+    },
+    {
+      "name": "Интерактивные устройства",
+      "slug": "interaktivnye-ustroistva",
+      "description": "Интерактивные доски, панели и дисплеи",
+      "image": "categories/interactive-devices.svg"
+    },
+    {
+      "name": "Кабели",
+      "slug": "kabeli",
+      "description": "Профессиональные кабели и соединители",
+      "image": "categories/cables.svg"
+    },
+    {
+      "name": "Камеры для ВКС",
+      "slug": "kamery-dlya-vks",
+      "description": "",
+      "image": "categories/cameras.svg"
+    },
+    {
+      "name": "Контроллеры для LED",
+      "slug": "kontrollery-dlya-led",
+      "description": "",
+      "image": "categories/video-walls.svg"
+    },
+    {
+      "name": "Крепления",
+      "slug": "krepleniya",
+      "description": "Крепления и монтажные аксессуары",
+      "image": "categories/mounts.svg"
+    },
+    {
+      "name": "Медицинские мониторы",
+      "slug": "meditsinskie-monitory",
+      "description": "",
+      "image": "categories/video-walls.svg"
+    },
+    {
+      "name": "Мониторы для видеонаблюдения",
+      "slug": "monitory-dlya-videonablyudeniya",
+      "description": "",
+      "image": "categories/video-walls.svg"
+    },
+    {
+      "name": "Настольные микрофоны",
+      "slug": "nastolnye-mikrofony",
+      "description": "",
+      "image": "categories/microphones.svg"
+    },
+    {
+      "name": "Наушники",
+      "slug": "naushniki",
+      "description": "Профессиональные наушники для конференц-залов",
+      "image": "categories/headphones.svg"
+    },
+    {
+      "name": "Оборудование звукоусиления",
+      "slug": "oborudovanie-zukousileniya",
+      "description": "Системы звукоусиления для конференц-залов и помещений",
+      "image": "categories/sound-amplification.svg"
+    },
+    {
+      "name": "Оборудование управления",
+      "slug": "oborudovanie-upravleniya",
+      "description": "Системы управления AV-оборудованием",
+      "image": "categories/control-equipment.svg"
+    },
+    {
+      "name": "Петличные микрофоны",
+      "slug": "petlichnye-mikrofony",
+      "description": "",
+      "image": "categories/microphones.svg"
+    },
+    {
+      "name": "Проекторы",
+      "slug": "proektory",
+      "description": "Профессиональные проекторы для конференц-залов",
+      "image": "categories/projectors.svg"
+    },
+    {
+      "name": "Решения для переговорных комнат",
+      "slug": "resheniya-dlya-peregovornyh-komnat",
+      "description": "",
+      "image": "categories/meeting-rooms.svg"
+    },
+    {
+      "name": "Решения для переговорных комнат",
+      "slug": "resheniya-dlya-peregovornykh-komnat",
+      "description": "Комплексные решения для оборудования переговорных комнат",
+      "image": "categories/meeting-rooms.svg"
+    },
+    {
+      "name": "Ручные микрофоны",
+      "slug": "ruchnye-mikrofony",
+      "description": "",
+      "image": "categories/microphones.svg"
+    },
+    {
+      "name": "Световое оборудование",
+      "slug": "svetovoe-oborudovanie",
+      "description": "Профессиональное световое оборудование",
+      "image": "categories/lighting-equipment.svg"
+    },
+    {
+      "name": "Системы Digital Signage",
+      "slug": "sistemy-digital-signage",
+      "description": "Цифровые системы информирования и рекламы",
+      "image": "categories/digital-signage.svg"
+    },
+    {
+      "name": "Системы голосования",
+      "slug": "sistemy-golosovaniya",
+      "description": "",
+      "image": "categories/audio-systems.svg"
+    },
+    {
+      "name": "Системы синхронного перевода",
+      "slug": "sistemy-sinhronnogo-perevoda",
+      "description": "Профессиональное оборудование для синхронного перевода",
+      "image": "categories/sync-translation.svg"
+    },
+    {
+      "name": "Сценические спецэффекты",
+      "slug": "stsenicheskie-spetseffekty",
+      "description": "Оборудование для создания сценических спецэффектов",
+      "image": "categories/stage-effects.svg"
+    },
+    {
+      "name": "Трибуны и рэковые шкафы",
+      "slug": "tribuny-i-rekovye-shkafy",
+      "description": "Профессиональные трибуны и рэковые шкафы",
+      "image": "categories/podiums-racks.svg"
+    },
+    {
+      "name": "Уличные LED-экраны",
+      "slug": "ulichnye-led-ekrany",
+      "description": "",
+      "image": "categories/video-walls.svg"
+    },
+    {
+      "name": "Шоу-оборудование",
+      "slug": "shou-oborudovanie",
+      "description": "Профессиональное оборудование для шоу и мероприятий",
+      "image": "categories/show-equipment.svg"
+    },
+    {
+      "name": "Конференц-системы",
+      "slug": "konferents-sistemy",
+      "description": "Оборудование для проведения конференций и совещаний",
+      "image": "categories/conference-systems.svg"
+    },
+    {
+      "name": "Оборудование для видеоконференцсвязи",
+      "slug": "oborudovanie-dlya-videokonferentssvyazi",
+      "description": "Системы для видеоконференций и онлайн-совещаний",
+      "image": "categories/video-conference.svg"
+    },
+    {
+      "name": "Микрофонные системы и микрофоны",
+      "slug": "mikrofonnye-sistemy-i-mikrofony",
+      "description": "Профессиональные микрофоны и микрофонные системы",
+      "image": "categories/microphones.svg"
+    },
+    {
+      "name": "Профессиональные дисплеи",
+      "slug": "professionalnye-displei",
+      "description": "Высококачественные дисплеи для профессионального использования",
+      "image": "categories/professional-displays.svg"
+    },
+    {
+      "name": "Светодиодные экраны",
+      "slug": "svetodiodnye-ekrany",
+      "description": "LED-экраны и видеостены для различных применений",
+      "image": "categories/led-screens.svg"
+    }
+  ],
+  "products": [
+    {
+      "title": "Контроллер LED-экранов Novastar VX4S",
+      "article": "NOV-VX4S",
+      "slug": "led-novastar-vx4s",
+      "category": "Светодиодные экраны",
+      "subcategory": "Контроллеры для LED",
+      "description": "Профессиональный контроллер для управления LED-экранами с поддержкой 4K разрешения.",
+      "details": {
+        "Производитель": "Novastar",
+        "Макс. разрешение": "1920×1200",
+        "Количество выходов": "4",
+        "Входы": "DVI, HDMI, SDI",
+        "Глубина цвета": "12 бит",
+        "Обновление": "60 Гц"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Внутренний LED-экран Absen A5",
+      "article": "ABS-A5-2.6",
+      "slug": "led-absen-a5",
+      "category": "Светодиодные экраны",
+      "subcategory": "Внутренние LED-экраны",
+      "description": "Внутренний LED-экран с шагом пикселя 2.6мм для создания бесшовных видеостен.",
+      "details": {
+        "Производитель": "Absen",
+        "Шаг пикселя": "2.6мм",
+        "Яркость": "1000 кд/м²",
+        "Разрешение модуля": "128×128",
+        "Обновление": "3840 Гц",
+        "Глубина цвета": "16 бит"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Профессиональный монитор EIZO ColorEdge CG319X",
+      "article": "EIZ-CG319X",
+      "slug": "eizo-coloredge-cg319x",
+      "category": "Профессиональные дисплеи",
+      "subcategory": "Мониторы для видеонаблюдения",
+      "description": "29.5-дюймовый профессиональный монитор с широким цветовым охватом для видеонаблюдения.",
+      "details": {
+        "Производитель": "EIZO",
+        "Диагональ": "29.5\"",
+        "Разрешение": "2560×1080",
+        "Яркость": "400 кд/м²",
+        "Контрастность": "1000:1",
+        "Цветовой охват": "99% Adobe RGB"
+      },
+      "preview_image": null,
+      "availability": "order",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Интерактивная панель Samsung Flip 85\"",
+      "article": "SAM-FLIP-85",
+      "slug": "samsung-flip-85",
+      "category": "Профессиональные дисплеи",
+      "subcategory": "Интерактивные панели",
+      "description": "85-дюймовая интерактивная панель для совещаний и презентаций с поддержкой одновременной работы 4 пользователей.",
+      "details": {
+        "Производитель": "Samsung",
+        "Диагональ": "85\"",
+        "Разрешение": "4K UHD",
+        "Яркость": "300 кд/м²",
+        "Касания": "До 4 одновременно",
+        "Подключение": "HDMI, USB, Wi-Fi"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Петличный микрофон Sennheiser ME 2",
+      "article": "SEN-ME2",
+      "slug": "sennheiser-me-2",
+      "category": "Микрофонные системы и микрофоны",
+      "subcategory": "Петличные микрофоны",
+      "description": "Компактный петличный микрофон для систем конференцсвязи и выступлений.",
+      "details": {
+        "Производитель": "Sennheiser",
+        "Тип": "Конденсаторный",
+        "Направленность": "Всенаправленная",
+        "Частотный диапазон": "30-20000 Гц",
+        "Чувствительность": "10 мВ/Па",
+        "Разъем": "Mini-lock"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 6
+    },
+    {
+      "title": "Ручной микрофон Sennheiser e945",
+      "article": "SEN-E945",
+      "slug": "sennheiser-e945",
+      "category": "Микрофонные системы и микрофоны",
+      "subcategory": "Ручные микрофоны",
+      "description": "Профессиональный динамический вокальный микрофон с супекардиоидной характеристикой.",
+      "details": {
+        "Производитель": "Sennheiser",
+        "Тип": "Динамический",
+        "Направленность": "Суперкардиоидная",
+        "Частотный диапазон": "40-18000 Гц",
+        "Чувствительность": "1.8 мВ/Па",
+        "Разъем": "XLR"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Потолочный микрофон Shure MXA910",
+      "article": "MXA910",
+      "slug": "shure-mxa910",
+      "category": "Микрофонные системы и микрофоны",
+      "subcategory": "Настольные микрофоны",
+      "description": "Потолочный массивный микрофон с автоматической наведением на говорящего.",
+      "details": {
+        "Производитель": "Shure",
+        "Тип": "Массивный потолочный",
+        "Количество капсюлей": "8",
+        "Направленность": "Автоматическая",
+        "Цвет": "Белый, Черный",
+        "Установка": "Подвесной"
+      },
+      "preview_image": null,
+      "availability": "order",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "PTZ камера Sony SRG-300SE",
+      "article": "SRG300SE",
+      "slug": "ptz-sony-srg-300se",
+      "category": "Оборудование для видеоконференцсвязи",
+      "subcategory": "Камеры для ВКС",
+      "description": "Профессиональная PTZ камера с 30-кратным оптическим зумом для конференц-залов.",
+      "details": {
+        "Производитель": "Sony",
+        "Разрешение": "1080p",
+        "Оптический зум": "30x",
+        "Цифровой зум": "12x",
+        "Управление": "VISCA",
+        "Интерфейсы": "HDMI, 3G-SDI, IP"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Система ВКС Cisco SX80",
+      "article": "SX80",
+      "slug": "cisco-sx80",
+      "category": "Оборудование для видеоконференцсвязи",
+      "subcategory": "Видеоконференцтерминалы",
+      "description": "Интегрированная система видеоконференцсвязи для больших переговорных комнат.",
+      "details": {
+        "Производитель": "Cisco",
+        "Разрешение": "1080p60",
+        "Количество экранов": "3",
+        "Протоколы": "SIP, H.323",
+        "Скорость": "до 6 Мбит/с",
+        "Кодеки": "H.264, H.265"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Видеоконференцтерминал Polycom RealPresence Group 700",
+      "article": "GRP7000",
+      "slug": "polycom-realpresence-group-700",
+      "category": "Оборудование для видеоконференцсвязи",
+      "subcategory": "Видеоконференцтерминалы",
+      "description": "Профессиональный видеоконференцтерминал для переговорных комнат среднего и крупного размера.",
+      "details": {
+        "Производитель": "Polycom",
+        "Разрешение": "4K",
+        "Количество участников": "до 64",
+        "Протоколы": "H.323, SIP",
+        "Скорость": "до 4 Мбит/с",
+        "Интерфейсы": "HDMI, USB, LAN"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Наушники для системы перевода Sennheiser HDE 2020-D",
+      "article": "SEN-HDE-2020",
+      "slug": "sennheiser-hde-2020-d",
+      "category": "Конференц-системы",
+      "subcategory": "Системы синхронного перевода",
+      "description": "Профессиональные стереонаушники для систем синхронного перевода с инфракрасным приемником.",
+      "details": {
+        "Производитель": "Sennheiser",
+        "Тип": "Накладные",
+        "Чувствительность": "108 дБ",
+        "Сопротивление": "32 Ом",
+        "Частотный диапазон": "18-20000 Гц"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Портативная система перевода Williams Sound Digi-Wave",
+      "article": "WS-DW-400",
+      "slug": "williams-sound-digi-wave",
+      "category": "Конференц-системы",
+      "subcategory": "Системы синхронного перевода",
+      "description": "Портативная система синхронного перевода для конференций и мероприятий. Поддерживает до 4 языков перевода.",
+      "details": {
+        "Производитель": "Williams Sound",
+        "Количество каналов": "4",
+        "Дальность действия": "60м",
+        "Время работы": "14 часов",
+        "Частота": "2.4 ГГц",
+        "Мощность": "10мВт"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    },
+    {
+      "title": "Система синхронного перевода Bosch Integrus 3",
+      "article": "BOS-INT-3",
+      "slug": "bosch-integrus-3",
+      "category": "Конференц-системы",
+      "subcategory": "Системы синхронного перевода",
+      "description": "Профессиональная система синхронного перевода для конференц-залов. Поддерживает до 31 языка перевода одновременно.",
+      "details": {
+        "Производитель": "Bosch",
+        "Количество каналов": "31",
+        "Дальность действия": "100м",
+        "Время работы": "12 часов",
+        "Частота": "2.4 ГГц",
+        "Мощность": "10мВт"
+      },
+      "preview_image": null,
+      "availability": "in_stock",
+      "is_active": true,
+      "views_count": 0
+    }
+  ],
+  "contacts": []
+}

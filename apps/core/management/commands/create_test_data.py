@@ -24,6 +24,7 @@ class Command(BaseCommand):
                 'name': 'Конференц-системы',
                 'slug': 'konferents-sistemy',
                 'description': 'Оборудование для проведения конференций и совещаний',
+                'image': 'categories/sync-translation.svg',
                 'order': 1,
                 'subcategories': [
                     {
@@ -44,6 +45,7 @@ class Command(BaseCommand):
                 'name': 'Оборудование для видеоконференцсвязи',
                 'slug': 'oborudovanie-dlya-videokonferentssvyazi',
                 'description': 'Оборудование для видеоконференцсвязи и удаленных совещаний',
+                'image': 'categories/video-conference.svg',
                 'order': 2,
                 'subcategories': [
                     {
@@ -64,6 +66,7 @@ class Command(BaseCommand):
                 'name': 'Микрофонные системы и микрофоны',
                 'slug': 'mikrofonnye-sistemy-i-mikrofony',
                 'description': 'Профессиональные микрофоны и микрофонные системы',
+                'image': 'categories/microphones.svg',
                 'order': 3,
                 'subcategories': [
                     {
@@ -84,6 +87,7 @@ class Command(BaseCommand):
                 'name': 'Профессиональные дисплеи',
                 'slug': 'professionalnye-displei',
                 'description': 'Профессиональные дисплеи и мониторы',
+                'image': 'categories/video-walls.svg',
                 'order': 4,
                 'subcategories': [
                     {
@@ -104,6 +108,7 @@ class Command(BaseCommand):
                 'name': 'Светодиодные экраны',
                 'slug': 'svetodiodnye-ekrany',
                 'description': 'Светодиодные экраны и видеостены',
+                'image': 'categories/video-walls.svg',
                 'order': 5,
                 'subcategories': [
                     {
@@ -129,6 +134,7 @@ class Command(BaseCommand):
                 defaults={
                     'name': cat_data['name'],
                     'description': cat_data['description'],
+                    'image': cat_data.get('image', ''),
                     'order': cat_data['order']
                 }
             )

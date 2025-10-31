@@ -122,6 +122,27 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Disable caching for static and media files in development
+# Add headers to prevent browser caching
+
+
+class NoCacheStaticFilesHandler:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        if request.path.startswith(STATIC_URL) or request.path.startswith(MEDIA_URL):
+            response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response['Pragma'] = 'no-cache'
+            response['Expires'] = '0'
+        return response
+
+
+# Custom middleware for development - only add in DEBUG mode
+if DEBUG:
+    MIDDLEWARE += ['config.settings.base.NoCacheStaticFilesHandler']
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

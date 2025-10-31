@@ -21,6 +21,7 @@ wheels/
 *.egg
 MANIFEST
 Task.docx
+TZ.docx
 
 # Virtual Environment
 venv/

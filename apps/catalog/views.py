@@ -9,7 +9,16 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
 
     def get_queryset(self):
-        return Category.objects.filter(parent=None, is_active=True).order_by('order')
+        return Category.objects.filter(parent=None, is_active=True).order_by('order').prefetch_related('children', 'products')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавляем статистику
+        context['total_categories'] = Category.objects.filter(
+            is_active=True).count()
+        context['total_products'] = Product.objects.filter(
+            is_active=True).count()
+        return context
 
 
 class CategoryDetailView(DetailView):

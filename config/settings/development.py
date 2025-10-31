@@ -3,13 +3,8 @@ from .base import *
 # Debug settings
 DEBUG = True
 
-# Database settings for development
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# Database settings for development - using PostgreSQL
+# DATABASES from base.py will be used (PostgreSQL)
 
 # Additional apps for development
 # INSTALLED_APPS += [

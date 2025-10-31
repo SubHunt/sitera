@@ -73,3 +73,50 @@ class RequestKPView(View):
                     except Product.DoesNotExist:
                         pass
                 return redirect('/')
+
+
+class ContactPageView(View):
+    """Страница контактов с картой и формой"""
+
+    def get(self, request):
+        form = ContactRequestForm()
+        context = {
+            'form': form,
+            'contact_info': {
+                'phone': '+7(747)481-83-28',
+                'email': 'info@sitera.ru',
+                'address': 'Республика Казахстан, г. Астана, ул. Е 652, дом 12, НП 13',
+                'working_hours': 'Пн-Пт: 9:00 - 18:00',
+                'coordinates': {
+                    'lat': 51.057761,
+                    'lng': 71.423153
+                }
+            }
+        }
+        return render(request, 'contacts/contact_page.html', context)
+
+    def post(self, request):
+        form = ContactRequestForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                'Ваше сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.'
+            )
+            return redirect('contacts:contact_page')
+        else:
+            context = {
+                'form': form,
+                'contact_info': {
+                    'phone': '+7(747)481-83-28',
+                    'email': 'info@sitera.ru',
+                    'address': 'Республика Казахстан, г. Астана, ул. Е 652, дом 12, НП 13',
+                    'working_hours': 'Пн-Пт: 9:00 - 18:00',
+                    'coordinates': {
+                        'lat': 51.057761,
+                        'lng': 71.423153
+                    }
+                }
+            }
+            return render(request, 'contacts/contact_page.html', context)

@@ -16,6 +16,12 @@ class Category(models.Model):
         verbose_name="Родительская категория"
     )
     description = models.TextField(blank=True, verbose_name="Описание")
+    image = models.ImageField(
+        upload_to='categories/images/',
+        blank=True,
+        null=True,
+        verbose_name="Изображение категории"
+    )
     order = models.PositiveIntegerField(
         default=0, verbose_name="Порядок сортировки")
     is_active = models.BooleanField(default=True, verbose_name="Активна")
