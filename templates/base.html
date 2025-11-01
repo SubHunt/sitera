@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- Level 2: Logo, Slogan and Search -->
+    <!-- Level 2: Logo and Slogan -->
     <div class="bg-white border-b border-sitera-border">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
@@ -59,28 +59,6 @@
                             Интеграция. Коммуникация. Контроль.
                         </div>
                     </a>
-                </div>
-                
-                <!-- Search -->
-                <div class="hidden md:flex items-center relative z-50">
-                    <div class="relative">
-                        <input
-                            type="text"
-                            id="header-search-input"
-                            placeholder="Поиск"
-                            class="w-64 px-4 py-2 pr-10 border border-sitera-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent"
-                        >
-                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-sitera-gray hover:text-sitera-primary">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
-                        
-                        <!-- Search Results Dropdown -->
-                        <div id="header-search-results" class="fixed top-32 left-1/2 transform -translate-x-1/2 bg-white border border-sitera-border rounded-lg shadow-2xl hidden z-[9999] w-96 max-h-96 overflow-y-auto">
-                            <!-- Search results will be populated here -->
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -97,6 +75,28 @@
                     <a href="#" class="text-gray-300 hover:text-sitera-secondary transition-colors font-medium">О компании</a>
                     <a href="{% url 'contacts:contact_page' %}" class="text-gray-300 hover:text-sitera-secondary transition-colors font-medium">Контакты</a>
                 </nav>
+                
+                <!-- Search -->
+                <div class="hidden md:flex items-center">
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="header-search-input"
+                            placeholder="Поиск"
+                            class="w-64 px-4 py-2 pr-10 border border-sitera-gray/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-sitera-secondary focus:border-transparent bg-white text-sitera-dark placeholder-sitera-gray"
+                        >
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-300 hover:text-sitera-secondary">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="header-search-results" class="absolute top-full left-1/2 transform -translate-x-1/2 bg-white border-2 border-sitera-primary rounded-lg shadow-2xl hidden z-[9999] w-96 max-h-96 overflow-y-auto mt-1">
+                            <!-- Search results will be populated here -->
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Mobile menu button -->
                 <button
