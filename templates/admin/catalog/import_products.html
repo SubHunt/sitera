@@ -1,0 +1,455 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+.import-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.import-form {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input {
+    margin-right: 8px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background: #79aec8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #68a3be;
+}
+
+.btn-secondary {
+    background: #ddd;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #ccc;
+}
+
+.file-drop-area {
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+.file-drop-area.dragover {
+    border-color: #79aec8;
+    background: #f0f8ff;
+}
+
+.file-drop-area p {
+    margin: 0;
+    color: #666;
+}
+
+.preview-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.preview-table th,
+.preview-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.preview-table th {
+    background: #f0f0f0;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #79aec8;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.result-message {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.result-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.result-error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.result-warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+.template-info {
+    background: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.template-info h3 {
+    margin-top: 0;
+    color: #0066cc;
+}
+
+.template-info ul {
+    margin-bottom: 0;
+}
+
+.template-info li {
+    margin-bottom: 5px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="import-container">
+        <h1>{{ title }}</h1>
+        
+        <div class="template-info">
+            <h3>Информация по импорту</h3>
+            <ul>
+                <li><strong>Поддерживаемые форматы:</strong> CSV, XLSX, JSON</li>
+                <li><strong>Обязательные поля:</strong> title (название), article (артикул)</li>
+                <li><strong>Необязательные поля:</strong> description (описание), price (цена), category (категория), is_active (активен)</li>
+                <li><a href="{% url 'admin:download_import_template' %}" class="btn btn-secondary">Скачать шаблон CSV</a></li>
+            </ul>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="import-form" id="import-form">
+            {% csrf_token %}
+            
+            <div class="file-drop-area" id="file-drop-area">
+                <p>Перетащите файл сюда или нажмите для выбора</p>
+                <input type="file" name="file" id="file-input" accept=".csv,.xlsx,.json" style="display: none;">
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.file.id_for_label }}">{{ form.file.label }}</label>
+                {{ form.file }}
+                {% if form.file.help_text %}
+                    <div class="form-help">{{ form.file.help_text }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="checkbox-group">
+                {{ form.update_existing }}
+                <label for="{{ form.update_existing.id_for_label }}">{{ form.update_existing.label }}</label>
+            </div>
+            {% if form.update_existing.help_text %}
+                <div class="form-help">{{ form.update_existing.help_text }}</div>
+            {% endif %}
+            
+            <div class="checkbox-group">
+                {{ form.delete_missing }}
+                <label for="{{ form.delete_missing.id_for_label }}">{{ form.delete_missing.label }}</label>
+            </div>
+            {% if form.delete_missing.help_text %}
+                <div class="form-help">{{ form.delete_missing.help_text }}</div>
+            {% endif %}
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="import-btn">
+                    Импортировать товары
+                </button>
+                <button type="button" class="btn btn-secondary" id="preview-btn">
+                    Предпросмотр
+                </button>
+                <a href="{% url 'admin:catalog_product_changelist' %}" class="btn btn-secondary">
+                    Отмена
+                </a>
+            </div>
+            
+            <div class="progress-bar" id="progress-bar" style="display: none;">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div id="result-message"></div>
+            
+            <div class="preview-section" id="preview-section" style="display: none;">
+                <h3>Предпросмотр данных (первые 5 строк)</h3>
+                <div id="preview-content"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileDropArea = document.getElementById('file-drop-area');
+    const fileInput = document.getElementById('file-input');
+    const importForm = document.getElementById('import-form');
+    const importBtn = document.getElementById('import-btn');
+    const previewBtn = document.getElementById('preview-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const resultMessage = document.getElementById('result-message');
+    const previewSection = document.getElementById('preview-section');
+    const previewContent = document.getElementById('preview-content');
+    
+    // Обработка перетаскивания файлов
+    fileDropArea.addEventListener('click', () => fileInput.click());
+    
+    fileDropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileDropArea.classList.add('dragover');
+    });
+    
+    fileDropArea.addEventListener('dragleave', () => {
+        fileDropArea.classList.remove('dragover');
+    });
+    
+    fileDropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileDropArea.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            updateFileName(files[0].name);
+        }
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            updateFileName(e.target.files[0].name);
+        }
+    });
+    
+    function updateFileName(fileName) {
+        fileDropArea.querySelector('p').textContent = `Выбран файл: ${fileName}`;
+    }
+    
+    // Предпросмотр
+    previewBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (!fileInput.files.length) {
+            showMessage('Пожалуйста, выберите файл для предпросмотра', 'error');
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        formData.append('update_existing', document.getElementById('{{ form.update_existing.id_for_label }}').checked);
+        formData.append('delete_missing', document.getElementById('{{ form.delete_missing.id_for_label }}').checked);
+        
+        fetch('{% url "admin:import_preview" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showPreview(data.preview);
+            } else {
+                showMessage('Ошибка при предпросмотре: ' + data.error, 'error');
+            }
+        })
+        .catch(error => {
+            showMessage('Ошибка при загрузке предпросмотра: ' + error.message, 'error');
+        });
+    });
+    
+    // Импорт
+    importForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!fileInput.files.length) {
+            showMessage('Пожалуйста, выберите файл для импорта', 'error');
+            return;
+        }
+        
+        progressBar.style.display = 'block';
+        progressFill.style.width = '0%';
+        
+        const formData = new FormData(importForm);
+        
+        // Имитация прогресса
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += 10;
+            progressFill.style.width = progress + '%';
+            if (progress >= 90) {
+                clearInterval(progressInterval);
+            }
+        }, 200);
+        
+        fetch(importForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            clearInterval(progressInterval);
+            progressFill.style.width = '100%';
+            
+            setTimeout(() => {
+                progressBar.style.display = 'none';
+                
+                if (data.success) {
+                    showMessage('Импорт успешно завершен!', 'success');
+                    if (data.message) {
+                        showMessage(data.message, 'info');
+                    }
+                    
+                    // Перенаправление через 2 секунды
+                    setTimeout(() => {
+                        window.location.href = '{% url "admin:catalog_product_changelist" %}';
+                    }, 2000);
+                } else {
+                    showMessage('Ошибка при импорте', 'error');
+                    if (data.errors) {
+                        data.errors.forEach(error => showMessage(error, 'error'));
+                    }
+                }
+            }, 500);
+        })
+        .catch(error => {
+            clearInterval(progressInterval);
+            progressBar.style.display = 'none';
+            showMessage('Ошибка при импорте: ' + error.message, 'error');
+        });
+    });
+    
+    function showMessage(message, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `result-message result-${type}`;
+        messageDiv.textContent = message;
+        resultMessage.appendChild(messageDiv);
+        
+        // Автоматическое удаление сообщения через 5 секунд
+        setTimeout(() => {
+            messageDiv.remove();
+        }, 5000);
+    }
+    
+    function showPreview(data) {
+        if (!data || data.length === 0) {
+            showMessage('Нет данных для предпросмотра', 'warning');
+            return;
+        }
+        
+        let tableHTML = '<table class="preview-table"><thead><tr>';
+        
+        // Заголовки таблицы
+        const headers = Object.keys(data[0]);
+        headers.forEach(header => {
+            tableHTML += `<th>${header}</th>`;
+        });
+        tableHTML += '</tr></thead><tbody>';
+        
+        // Данные таблицы
+        data.forEach(row => {
+            tableHTML += '<tr>';
+            headers.forEach(header => {
+                tableHTML += `<td>${row[header] || ''}</td>`;
+            });
+            tableHTML += '</tr>';
+        });
+        
+        tableHTML += '</tbody></table>';
+        
+        previewContent.innerHTML = tableHTML;
+        previewSection.style.display = 'block';
+        
+        showMessage(`Предпросмотр: ${data.length} строк`, 'info');
+    }
+});
+</script>
+{% endblock %}

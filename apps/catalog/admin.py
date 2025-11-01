@@ -1,5 +1,9 @@
 from django.contrib import admin
+from django.urls import path
+from django.shortcuts import redirect
+from django.urls import reverse
 from .models import Category, Product, ProductImage
+from .admin_views import import_products, download_import_template
 
 
 class ProductImageInline(admin.TabularInline):
@@ -28,6 +32,17 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ['-created_at']
     prepopulated_fields = {'slug': ('title',)}
     inlines = [ProductImageInline]
+
+    change_list_template = 'admin/catalog/product_change_list.html'
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('import/', import_products, name='catalog_product_import'),
+            path('import-template/', download_import_template,
+                 name='download_import_template'),
+        ]
+        return custom_urls + urls
 
     fieldsets = (
         ('Основная информация', {
