@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты - Sitera{% endblock %}
+{% block meta_description %}Контактная информация компании Sitera. Адрес, телефон, email и карта проезда.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-gradient text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Контакты</h1>
+            <p class="text-xl text-blue-100">Свяжитесь с нами для получения консультации</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold text-sitera-dark mb-8">Контактная информация</h2>
+                <!-- Additional Text -->
+                <div class="mt-80 p-2 bg-blue-50 rounded-lg">
+                    {% comment %} <h3 class="font-semibold text-lg text-sitera-dark mb-4">Свяжитесь с нами</h3> {% endcomment %}
+                    <p class="text-gray-600 leading-relaxed">
+                        Все комментарии, отзывы или предложения приветствуются. Основываясь на ваших пожеланиях, мы прилагаем все усилия для улучшения Sitera каждый день. Если у вас есть что сказать, просто сообщите нам об этом. Вы также можете посетить наш офис по рабочим дням.
+                    </p>
+                </div>
+                <div class="space-y-6 flex-grow">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-sitera-primary rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-sitera-dark mb-1">Адрес</h3>
+                            <p class="text-gray-600">{{ contact_info.address }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-sitera-primary rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-sitera-dark mb-1">Телефон</h3>
+                            <p class="text-gray-600">
+                                <a href="tel:{{ contact_info.phone_raw }}" class="hover:text-sitera-primary transition-colors">{{ contact_info.phone_formatted }}</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-sitera-primary rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-sitera-dark mb-1">Email</h3>
+                            <p class="text-gray-600">
+                                <a href="mailto:{{ contact_info.email }}" class="hover:text-sitera-primary transition-colors">{{ contact_info.email }}</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-sitera-primary rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-sitera-dark mb-1">Время работы</h3>
+                            <p class="text-gray-600">{{ contact_info.working_hours }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            <!-- Contact Form -->
+            <div>
+                <h2 class="text-2xl font-bold text-sitera-dark mb-8">Свяжитесь с нами</h2>
+                <div class="card-featured">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700 border border-green-200{% elif message.tags == 'error' %}bg-red-100 text-red-700 border border-red-200{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form id="contact-page-form" method="post" action="/contacts/page/" class="space-y-6">
+                        {% csrf_token %}
+                        
+                        <div>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ form.name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            {{ form.organization }}
+                            {% if form.organization.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ form.organization.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ form.phone.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ form.message.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary shadow-glow w-full">
+                                <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                                Отправить сообщение
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="mt-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-sitera-dark">Карта проезда</h2>
+                <button onclick="openYandexMap()" class="btn-secondary text-sm">
+                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Открыть в Яндекс.Картах
+                </button>
+            </div>
+            <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg" style="height: 450px;">
+                <div id="map" class="w-full h-full"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Info Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h3 class="font-semibold text-lg text-sitera-dark mb-6 text-center">Дополнительная информация</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-sitera-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-semibold text-sitera-dark mb-2">Быстрая обработка</h4>
+                <p class="text-gray-600 text-sm">Обрабатываем заявки в течение 24 часов</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-sitera-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-semibold text-sitera-dark mb-2">Гарантия качества</h4>
+                <p class="text-gray-600 text-sm">Только сертифицированное оборудование</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-sitera-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-semibold text-sitera-dark mb-2">Доставка по Казахстану</h4>
+                <p class="text-gray-600 text-sm">Быстрая доставка по всей стране</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Yandex Maps API -->
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=YOUR_YANDEX_API_KEY" type="text/javascript"></script>
+<script>
+    // Инициализация карты
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+            center: [{{ contact_info.coordinates.lat }}, {{ contact_info.coordinates.lng }}],
+            zoom: 16
+        });
+        
+        var myPlacemark = new ymaps.Placemark([{{ contact_info.coordinates.lat }}, {{ contact_info.coordinates.lng }}], {
+            balloonContentHeader: 'Sitera',
+            balloonContentBody: '{{ contact_info.address }}',
+            balloonContentFooter: '{{ contact_info.phone_formatted }}',
+            hintContent: 'Sitera - Профессиональное оборудование'
+        }, {
+            preset: 'islands#redIcon'
+        });
+        
+        myMap.geoObjects.add(myPlacemark);
+    });
+</script>
+
+<!-- Функция для открытия карты в новом окне -->
+<script>
+function openYandexMap() {
+    window.open('https://yandex.ru/maps/163/astana/house/e_652_koshesi_12/Y0gYcgVjSEAEQFtrfXx0dntlZQ==/?from=mapframe&ll=71.423153%2C51.057761&source=mapframe&um=constructor%3A37d9aef8992482d0d33e31dc65752fd5a7424d7520e4bea4b9024b99b9588378&utm_source=mapframe&z=16.71', '_blank');
+}
+</script>
+{% endblock %}

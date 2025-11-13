@@ -1,0 +1,51 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient_conf)"/>
+  <defs>
+    <linearGradient id="gradient_conf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка конференц-системы -->
+  <g transform="translate(200, 150)">
+    <!-- Центральный блок -->
+    <rect x="-60" y="-25" width="120" height="50" rx="8" fill="white" opacity="0.9"/>
+    <rect x="-55" y="-20" width="110" height="40" rx="5" fill="#1a1a1a"/>
+    
+    <!-- Дисплей -->
+    <rect x="-45" y="-15" width="90" height="20" rx="3" fill="#047857" opacity="0.7"/>
+    
+    <!-- Микрофоны на столе -->
+    <circle cx="-30" cy="-5" r="3" fill="white" opacity="0.8"/>
+    <circle cx="-10" cy="-5" r="3" fill="white" opacity="0.8"/>
+    <circle cx="10" cy="-5" r="3" fill="white" opacity="0.8"/>
+    <circle cx="30" cy="-5" r="3" fill="white" opacity="0.8"/>
+    
+    <!-- Кнопки управления -->
+    <rect x="-40" y="5" width="8" height="3" rx="1" fill="white" opacity="0.6"/>
+    <rect x="-25" y="5" width="8" height="3" rx="1" fill="white" opacity="0.6"/>
+    <rect x="-10" y="5" width="8" height="3" rx="1" fill="white" opacity="0.6"/>
+    <rect x="5" y="5" width="8" height="3" rx="1" fill="white" opacity="0.6"/>
+    <rect x="20" y="5" width="8" height="3" rx="1" fill="white" opacity="0.6"/>
+    
+    <!-- Микрофоны -->
+    <rect x="-85" y="-15" width="8" height="25" rx="2" fill="white" opacity="0.9"/>
+    <circle cx="-81" cy="-18" r="4" fill="#047857" opacity="0.7"/>
+    <rect x="-83" y="-10" width="4" height="15" rx="1" fill="#1a1a1a"/>
+    
+    <rect x="77" y="-15" width="8" height="25" rx="2" fill="white" opacity="0.9"/>
+    <circle cx="81" cy="-18" r="4" fill="#047857" opacity="0.7"/>
+    <rect x="79" y="-10" width="4" height="15" rx="1" fill="#1a1a1a"/>
+    
+    <!-- Звуковые волны -->
+    <path d="M -95,-10 Q -105,-10 -105,0 Q -105,10 -95,10" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M 95,-10 Q 105,-10 105,0 Q 105,10 95,10" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
+  </g>
+  
+  <!-- Текст -->
+  <!-- <text x="200" y="270" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">
+    Конференц-системы
+  </text> -->
+  
+</svg>

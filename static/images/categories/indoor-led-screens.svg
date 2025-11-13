@@ -1,0 +1,95 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient18)"/>
+  <defs>
+    <linearGradient id="gradient18" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка внутреннего LED экрана -->
+  <g transform="translate(200, 150)">
+    <!-- Рамка LED экрана -->
+    <rect x="-70" y="-45" width="140" height="80" rx="8" fill="white" opacity="0.9"/>
+    <rect x="-65" y="-40" width="130" height="70" rx="5" fill="#1a1a1a"/>
+    
+    <!-- LED модули внутри -->
+    <!-- Верхний ряд модулей -->
+    <rect x="-60" y="-35" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-52" cy="-25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="-47" cy="-25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="-42" cy="-25" r="2" fill="#0000ff" opacity="0.8"/>
+    
+    <rect x="-30" y="-35" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-22" cy="-25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="-17" cy="-25" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="-12" cy="-25" r="2" fill="#ff0000" opacity="0.8"/>
+    
+    <rect x="0" y="-35" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="8" cy="-25" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="13" cy="-25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="18" cy="-25" r="2" fill="#00ff00" opacity="0.8"/>
+    
+    <rect x="30" y="-35" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="38" cy="-25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="43" cy="-25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="48" cy="-25" r="2" fill="#0000ff" opacity="0.8"/>
+    
+    <!-- Средний ряд модулей -->
+    <rect x="-60" y="-10" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-52" cy="0" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="-47" cy="0" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="-42" cy="0" r="2" fill="#ff0000" opacity="0.8"/>
+    
+    <rect x="-30" y="-10" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-22" cy="0" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="-17" cy="0" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="-12" cy="0" r="2" fill="#00ff00" opacity="0.8"/>
+    
+    <rect x="0" y="-10" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="8" cy="0" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="13" cy="0" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="18" cy="0" r="2" fill="#0000ff" opacity="0.8"/>
+    
+    <rect x="30" y="-10" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="38" cy="0" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="43" cy="0" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="48" cy="0" r="2" fill="#ff0000" opacity="0.8"/>
+    
+    <!-- Нижний ряд модулей -->
+    <rect x="-60" y="15" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-52" cy="25" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="-47" cy="25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="-42" cy="25" r="2" fill="#00ff00" opacity="0.8"/>
+    
+    <rect x="-30" y="15" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="-22" cy="25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="-17" cy="25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="-12" cy="25" r="2" fill="#0000ff" opacity="0.8"/>
+    
+    <rect x="0" y="15" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="8" cy="25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="13" cy="25" r="2" fill="#0000ff" opacity="0.8"/>
+    <circle cx="18" cy="25" r="2" fill="#ff0000" opacity="0.8"/>
+    
+    <rect x="30" y="15" width="25" height="20" rx="2" fill="#333"/>
+    <circle cx="38" cy="25" r="2" fill="#ff0000" opacity="0.8"/>
+    <circle cx="43" cy="25" r="2" fill="#00ff00" opacity="0.8"/>
+    <circle cx="48" cy="25" r="2" fill="#0000ff" opacity="0.8"/>
+    
+    <!-- Контроллер -->
+    <rect x="-10" y="40" width="20" height="8" rx="3" fill="white" opacity="0.8"/>
+    <circle cx="-5" cy="44" r="2" fill="#047857"/>
+    <circle cx="0" cy="44" r="2" fill="#fbbf24"/>
+    <circle cx="5" cy="44" r="2" fill="#10b981"/>
+    
+    <!-- Подключения -->
+    <rect x="-3" y="48" width="6" height="6" rx="2" fill="white" opacity="0.7"/>
+    <line x1="0" y1="54" x2="0" y2="60" stroke="white" stroke-width="2" opacity="0.7"/>
+    
+    <!-- Индикаторы -->
+    <circle cx="-50" cy="50" r="2" fill="#10b981" opacity="0.9"/>
+    <circle cx="-45" cy="50" r="2" fill="#10b981" opacity="0.9"/>
+    <circle cx="-40" cy="50" r="2" fill="#fbbf24" opacity="0.9"/>
+  </g>
+</svg>

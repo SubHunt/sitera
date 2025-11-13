@@ -1,0 +1,10 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8F9FA"/>
+  <rect x="50" y="50" width="300" height="200" fill="#0066CC" rx="10"/>
+  <circle cx="100" cy="150" r="30" fill="white"/>
+  <circle cx="200" cy="150" r="30" fill="white"/>
+  <circle cx="300" cy="150" r="30" fill="white"/>
+  <path d="M130 150 L170 150" stroke="white" stroke-width="3" fill="none"/>
+  <path d="M230 150 L270 150" stroke="white" stroke-width="3" fill="none"/>
+  <text x="200" y="250" font-family="Arial, sans-serif" font-size="18" fill="#495057" text-anchor="middle">Синхронный перевод</text>
+</svg>

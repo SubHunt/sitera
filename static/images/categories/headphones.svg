@@ -1,0 +1,36 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient4)"/>
+  <defs>
+    <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#065F46;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка наушников -->
+  <g transform="translate(200, 150)">
+    <!-- Дуга наушников -->
+    <path d="M -60 -20 C -60 -60, 60 -60, 60 -20" 
+          stroke="white" stroke-width="8" fill="none" opacity="0.9"/>
+    
+    <!-- Левая чашка -->
+    <rect x="-70" y="-20" width="25" height="40" rx="12" fill="white" opacity="0.9"/>
+    <rect x="-65" y="-15" width="15" height="30" rx="8" fill="#047857"/>
+    
+    <!-- Правая чашка -->
+    <rect x="45" y="-20" width="25" height="40" rx="12" fill="white" opacity="0.9"/>
+    <rect x="50" y="-15" width="15" height="30" rx="8" fill="#047857"/>
+    
+    <!-- Детали -->
+    <circle cx="-57" cy="0" r="3" fill="white" opacity="0.7"/>
+    <circle cx="57" cy="0" r="3" fill="white" opacity="0.7"/>
+    
+    <!-- Звуковые волны -->
+    <path d="M -80 -10 Q -90 -20, -80 -30" stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 80 -10 Q 90 -20, 80 -30" stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M -85 0 Q -95 -10, -85 -20" stroke="white" stroke-width="2" fill="none" opacity="0.4"/>
+    <path d="M 85 0 Q 95 -10, 85 -20" stroke="white" stroke-width="2" fill="none" opacity="0.4"/>
+  </g>
+  
+  
+</svg>

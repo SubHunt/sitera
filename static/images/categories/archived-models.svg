@@ -1,0 +1,86 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient23)"/>
+  <defs>
+    <linearGradient id="gradient23" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка архивных моделей -->
+  <g transform="translate(200, 150)">
+    <!-- Архивная коробка -->
+    <rect x="-35" y="-20" width="70" height="40" rx="3" fill="white" opacity="0.9"/>
+    <rect x="-32" y="-17" width="64" height="34" rx="2" fill="#1a1a1a"/>
+    
+    <!-- Этикетка архива -->
+    <rect x="-25" y="-12" width="20" height="10" rx="2" fill="#047857" opacity="0.7"/>
+    
+    
+    <!-- Старое оборудование в коробке -->
+    <!-- Устаревший микрофон -->
+    <g transform="translate(-10, 0)">
+      <circle cx="0" cy="0" r="3" fill="white" opacity="0.6"/>
+      <circle cx="0" cy="0" r="1.5" fill="#1a1a1a"/>
+      <rect x="-0.5" y="3" width="1" height="4" rx="0.5" fill="white" opacity="0.5"/>
+    </g>
+    
+    <!-- Устаревший пульт -->
+    <g transform="translate(10, 0)">
+      <rect x="-4" y="-2" width="8" height="4" rx="1" fill="white" opacity="0.6"/>
+      <rect x="-3" y="-1" width="6" height="2" rx="1" fill="#1a1a1a"/>
+      <circle cx="-1.5" cy="0" r="0.3" fill="#047857" opacity="0.5"/>
+      <circle cx="1.5" cy="0" r="0.3" fill="#047857" opacity="0.5"/>
+    </g>
+    
+    <!-- Пыль на оборудовании -->
+    <ellipse cx="-10" cy="-2" rx="4" ry="1" fill="white" opacity="0.2"/>
+    <ellipse cx="10" cy="-2" rx="4" ry="1" fill="white" opacity="0.2"/>
+    
+    <!-- Календарь с датой -->
+    <g transform="translate(30, -20)">
+      <rect x="-8" y="-10" width="16" height="18" rx="2" fill="white" opacity="0.9"/>
+      <rect x="-6" y="-8" width="12" height="14" rx="1" fill="#1a1a1a"/>
+      
+      <!-- Даты -->
+      
+      
+      
+    </g>
+    
+    <!-- Стопка старых документов -->
+    <g transform="translate(-30, 20)">
+      <rect x="-6" y="-3" width="12" height="6" rx="1" fill="white" opacity="0.7"/>
+      <rect x="-6" y="-1" width="12" height="6" rx="1" fill="white" opacity="0.6"/>
+      <rect x="-6" y="1" width="12" height="6" rx="1" fill="white" opacity="0.5"/>
+      
+      <!-- Текст на документах -->
+      <rect x="-4" y="-2" width="8" height="0.5" rx="0.25" fill="#1a1a1a" opacity="0.5"/>
+      <rect x="-4" y="0" width="8" height="0.5" rx="0.25" fill="#1a1a1a" opacity="0.5"/>
+      <rect x="-4" y="2" width="8" height="0.5" rx="0.25" fill="#1a1a1a" opacity="0.5"/>
+    </g>
+    
+    <!-- Паутина в углу -->
+    <g transform="translate(35, 25)">
+      <path d="M 0,0 L 5,-3 L 8,0 L 5,3 Z" stroke="white" stroke-width="0.5" fill="none" opacity="0.3"/>
+      <path d="M 0,0 L -3,-2 L -2,2 Z" stroke="white" stroke-width="0.5" fill="none" opacity="0.3"/>
+      <circle cx="0" cy="0" r="0.5" fill="white" opacity="0.4"/>
+    </g>
+    
+    <!-- Знак "устарело" -->
+    <g transform="translate(0, -30)">
+      <circle cx="0" cy="0" r="8" fill="#ef4444" opacity="0.8"/>
+      <line x1="-4" y1="-4" x2="4" y2="4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-4" y1="4" x2="4" y2="-4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Ценник со скидкой -->
+    <g transform="translate(-20, -30)">
+      <rect x="-8" y="-5" width="16" height="10" rx="2" fill="#10b981" opacity="0.8"/>
+      
+      
+    </g>
+  </g>
+  
+  
+</svg>

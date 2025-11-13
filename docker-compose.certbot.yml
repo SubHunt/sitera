@@ -1,0 +1,56 @@
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/media
+      - certbot_www:/var/www/certbot
+      - ./nginx/nginx-temp.conf:/home/app/web/nginx/nginx-temp.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    command: >
+      bash -c "
+        rm -f /etc/nginx/conf.d/default.conf &&
+        cp /home/app/web/nginx/nginx-temp.conf /etc/nginx/conf.d/default.conf &&
+        nginx -g 'daemon off;'
+      "
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    command: gunicorn config.wsgi:application --config gunicorn.conf.py
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/media
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email info@sitera.kz --agree-tos --no-eff-email -d sitera.kz -d www.sitera.kz
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  certbot_data:
+  certbot_www:

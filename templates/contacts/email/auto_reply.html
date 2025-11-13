@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ваш запрос получен - Sitera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background: #f9fafb;
+            padding: 30px;
+            border: 1px solid #e5e7eb;
+        }
+        .footer {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 5px 5px;
+            font-size: 14px;
+        }
+        .highlight {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .contact-info {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e5e7eb;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #047857;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .btn:hover {
+            background: #065F46;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ваш запрос получен!</h1>
+    </div>
+    
+    <div class="content">
+        <div class="highlight">
+            <p><strong>Уважаемый(ая) {{ contact_request.name }}!</strong></p>
+            {% comment %} <p>Благодарим вас за интерес к нашей продукции и услугам. Ваш {{ request_type_display }} успешно получен и находится в обработке.</p> {% endcomment %}
+            <p>Благодарим вас за интерес к нашей продукции и услугам. Ваш запрос успешно получен и находится в обработке.</p>
+        </div>
+        
+        <p>Наши специалисты свяжутся с вами в кратчайшие сроки для предоставления полной информации по вашему запросу.</p>
+        
+        {% if contact_request.product %}
+        <p>Вы интересовались товаром: <strong>{{ contact_request.product.title }}</strong></p>
+        {% endif %}
+        
+        <div class="contact-info">
+            <h3>Контактная информация:</h3>
+            <p><strong>Телефон:</strong> <a href="tel:+7(747)481-83-28">+7(747)481-83-28</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@sitera.kz">info@sitera.kz</a></p>
+            <p><strong>Адрес:</strong> Республика Казахстан, г. Астана, ул. Е 652, дом 12, НП 13</p>
+            <p><strong>Время работы:</strong> Пн-Пт: 9:00 - 18:00</p>
+        </div>
+        
+        <p style="text-align: center;">
+            <a href="https://sitera.kz" class="btn">Перейти на сайт</a>
+        </p>
+        
+        <p><em>Это автоматическое уведомление. Пожалуйста, не отвечайте на это письмо.</em></p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Sitera - Профессиональное оборудование для синхронного перевода и конференц-залов</p>
+        {% comment %} <p>Профессиональное оборудование для конференц-залов и систем синхронного перевода</p> {% endcomment %}
+    </div>
+</body>
+</html>

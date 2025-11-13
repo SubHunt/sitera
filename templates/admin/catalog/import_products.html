@@ -1,0 +1,617 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+.import-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input.form-control:focus {
+    outline: none;
+    border-color: #79aec8;
+    box-shadow: 0 0 0 3px rgba(121, 174, 200, 0.1);
+}
+
+/* Стили для Select2 */
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 42px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px !important;
+    padding-left: 12px !important;
+    padding-right: 30px !important;
+    color: #333 !important;
+    font-size: 14px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px !important;
+    top: 1px !important;
+    right: 1px !important;
+}
+
+.form-help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-group label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background: #79aec8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #68a3be;
+}
+
+.btn-secondary {
+    background: #ddd;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #ccc;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.file-drop-area {
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+.file-drop-area.dragover {
+    border-color: #79aec8;
+    background: #f0f8ff;
+}
+
+.file-drop-area.file-selected {
+    border-color: #28a745;
+    background: #f0fff4;
+}
+
+.file-drop-area p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.template-info {
+    background: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.template-info h3 {
+    margin-top: 0;
+    color: #0066cc;
+    font-size: 16px;
+}
+
+.template-info ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.template-info li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.category-select-info {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #856404;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+    display: none;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #79aec8;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.cancel-btn {
+    display: none;
+    margin-left: 10px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="import-container">
+        <h1>{{ title }}</h1>
+        
+        <div class="template-info">
+            <h3>📋 Информация по импорту</h3>
+            <ul>
+                <li><strong>Поддерживаемые форматы:</strong> CSV, XLSX, JSON</li>
+                <li><strong>Обязательные поля:</strong> title (название товара)</li>
+                <li><strong>Необязательные поля:</strong> article, description, category, availability, details, images, url</li>
+                <li><strong>Важно:</strong> Товары идентифицируются по <u>названию (title)</u></li>
+                <li><a href="{% url 'catalog:download_import_template' %}" class="btn btn-secondary" style="margin-top: 10px;">📥 Скачать шаблон CSV</a></li>
+            </ul>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" id="import-form" action="{% url 'catalog:import_products' %}">
+            {% csrf_token %}
+            
+            <!-- Выбор категории -->
+            <div class="form-group">
+                <label for="{{ form.category.id_for_label }}">
+                    📁 {{ form.category.label }}
+                </label>
+                {{ form.category }}
+                <div class="category-select-info">
+                    💡 <strong>Рекомендация:</strong> Выберите категорию, чтобы все товары из файла добавились в неё. 
+                    Если не выбрано, система попытается найти категорию по названию из столбца "category" в файле.
+                </div>
+                {% if form.category.help_text %}
+                    <div class="form-help">{{ form.category.help_text }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Загрузка файла -->
+            <div class="form-group">
+                <label for="id_file">{{ form.file.label }}</label>
+                {{ form.file }}
+                {% if form.file.help_text %}
+                    <div class="form-help">{{ form.file.help_text }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Опции импорта -->
+            <div class="checkbox-group">
+                {{ form.update_existing }}
+                <label for="{{ form.update_existing.id_for_label }}">
+                    {{ form.update_existing.label }}
+                    {% if form.update_existing.help_text %}
+                        <span class="form-help" style="display: block; margin-top: 5px;">{{ form.update_existing.help_text }}</span>
+                    {% endif %}
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                {{ form.delete_missing }}
+                <label for="{{ form.delete_missing.id_for_label }}">
+                    {{ form.delete_missing.label }}
+                    {% if form.delete_missing.help_text %}
+                        <span class="form-help" style="display: block; margin-top: 5px;">{{ form.delete_missing.help_text }}</span>
+                    {% endif %}
+                </label>
+            </div>
+            
+            <!-- Кнопки -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="import-btn">
+                    🚀 Импортировать товары
+                </button>
+                <button type="button" class="btn btn-danger cancel-btn" id="cancel-btn" style="display: none;">
+                    ⛔ Отменить импорт
+                </button>
+                <a href="{% url 'admin:catalog_product_changelist' %}" class="btn btn-secondary">
+                    ❌ Отмена
+                </a>
+            </div>
+            
+            <!-- Прогресс -->
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <!-- Лог импорта -->
+            <div id="import-log" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; max-height: 400px; overflow-y: auto;">
+                <h4 style="margin-top: 0; color: #495057;">📋 Лог импорта товаров</h4>
+                <div id="log-content" style="font-family: monospace; font-size: 12px; line-height: 1.4;">
+                    <div style="color: #6c757d;">Ожидание начала импорта...</div>
+                </div>
+            </div>
+            
+            <div id="result-message"></div>
+        </form>
+    </div>
+</div>
+
+<script>
+// AJAX скрипт для импорта товаров с отображением прогресса
+document.addEventListener('DOMContentLoaded', function() {
+    const importForm = document.getElementById('import-form');
+    const importBtn = document.getElementById('import-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const importLog = document.getElementById('import-log');
+    const logContent = document.getElementById('log-content');
+    
+    // Переменные для хранения состояния
+    let currentRequest = null;
+    let progressInterval = null;
+    
+    if (importForm && importBtn && cancelBtn) {
+        importForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Предотвращаем стандартную отправку формы
+            
+            // Проверяем, выбран ли файл
+            const fileInput = document.querySelector('input[name="file"]');
+            const categorySelect = document.querySelector('select[name="category"]');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('❌ Пожалуйста, выберите файл для импорта');
+                return false;
+            }
+            
+            if (!categorySelect.value) {
+                const confirmed = window.confirm(
+                    '⚠️ Вы не выбрали категорию!\n\n' +
+                    'Система попытается найти категорию по названию из файла.\n' +
+                    'Это может привести к ошибкам, если категория не существует.\n\n' +
+                    'Продолжить без выбора категории?'
+                );
+                
+                if (!confirmed) {
+                    return false;
+                }
+            }
+            
+            // Показываем прогресс и лог сразу при начале импорта
+            progressBar.style.display = 'block';
+            importLog.style.display = 'block';
+            
+            // Очищаем лог
+            logContent.innerHTML = '';
+            
+            // Создаем элемент для отображения прогресса
+            const progressEntry = document.createElement('div');
+            progressEntry.id = 'progress-entry';
+            progressEntry.style.color = '#6c757d';
+            progressEntry.innerHTML = '⏳ Подготовка к импорту...';
+            logContent.appendChild(progressEntry);
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            // Блокируем кнопку импорта и показываем кнопку отмены
+            importBtn.disabled = true;
+            importBtn.textContent = '⏳ Импорт выполняется...';
+            cancelBtn.style.display = 'inline-block';
+            
+            // Создаем FormData для отправки формы
+            const formData = new FormData(importForm);
+            // Добавляем специальный параметр для обозначения AJAX запроса
+            formData.append('ajax', 'true');
+            
+            // Создаем новый XMLHttpRequest
+            currentRequest = new XMLHttpRequest();
+            
+            // Обрабатываем ответ
+            currentRequest.onreadystatechange = function() {
+                if (currentRequest.readyState === XMLHttpRequest.DONE) {
+                    // Останавливаем интервал обновления прогресса
+                    if (progressInterval) {
+                        clearInterval(progressInterval);
+                        progressInterval = null;
+                    }
+                    
+                    // Скрываем кнопку отмены
+                    cancelBtn.style.display = 'none';
+                    
+                    // Завершаем прогресс
+                    progressFill.style.width = '100%';
+                    
+                    if (currentRequest.status === 200) {
+                        try {
+                            const response = JSON.parse(currentRequest.responseText);
+                            
+                            // Добавляем финальное сообщение в лог
+                            const finalEntry = document.createElement('div');
+                            finalEntry.style.color = '#007bff';
+                            finalEntry.innerHTML = '✅ Импорт завершен!';
+                            logContent.appendChild(finalEntry);
+                            logContent.scrollTop = logContent.scrollHeight;
+                            
+                            // Показываем результат
+                            if (response.success) {
+                                const successEntry = document.createElement('div');
+                                successEntry.style.color = '#28a745';
+                                successEntry.style.fontWeight = 'bold';
+                                successEntry.innerHTML = '🎉 ' + response.message;
+                                logContent.appendChild(successEntry);
+                                
+                                // Добавляем детали
+                                if (response.imported !== undefined) {
+                                    const importedEntry = document.createElement('div');
+                                    importedEntry.style.color = '#28a745';
+                                    importedEntry.innerHTML = `✅ Создано товаров: ${response.imported}`;
+                                    logContent.appendChild(importedEntry);
+                                }
+                                
+                                if (response.updated !== undefined) {
+                                    const updatedEntry = document.createElement('div');
+                                    updatedEntry.style.color = '#17a2b8';
+                                    updatedEntry.innerHTML = `🔄 Обновлено товаров: ${response.updated}`;
+                                    logContent.appendChild(updatedEntry);
+                                }
+                                
+                                if (response.skipped !== undefined) {
+                                    const skippedEntry = document.createElement('div');
+                                    skippedEntry.style.color = '#ffc107';
+                                    skippedEntry.innerHTML = `⏭️ Пропущено товаров: ${response.skipped}`;
+                                    logContent.appendChild(skippedEntry);
+                                }
+                                
+                                // Показываем ошибки если есть
+                                if (response.errors && response.errors.length > 0) {
+                                    const errorsHeader = document.createElement('div');
+                                    errorsHeader.style.color = '#dc3545';
+                                    errorsHeader.style.fontWeight = 'bold';
+                                    errorsHeader.innerHTML = '❌ Ошибки:';
+                                    logContent.appendChild(errorsHeader);
+                                    
+                                    response.errors.forEach(error => {
+                                        const errorEntry = document.createElement('div');
+                                        errorEntry.style.color = '#dc3545';
+                                        errorEntry.innerHTML = `❌ ${error}`;
+                                        logContent.appendChild(errorEntry);
+                                    });
+                                }
+                                
+                                // Показываем предупреждения если есть
+                                if (response.warnings && response.warnings.length > 0) {
+                                    const warningsHeader = document.createElement('div');
+                                    warningsHeader.style.color = '#ffc107';
+                                    warningsHeader.style.fontWeight = 'bold';
+                                    warningsHeader.innerHTML = '⚠️ Предупреждения:';
+                                    logContent.appendChild(warningsHeader);
+                                    
+                                    response.warnings.forEach(warning => {
+                                        const warningEntry = document.createElement('div');
+                                        warningEntry.style.color = '#ffc107';
+                                        warningEntry.innerHTML = `⚠️ ${warning}`;
+                                        logContent.appendChild(warningEntry);
+                                    });
+                                }
+                            } else {
+                                const errorEntry = document.createElement('div');
+                                errorEntry.style.color = '#dc3545';
+                                errorEntry.innerHTML = '❌ Ошибка: ' + (response.message || 'Неизвестная ошибка');
+                                logContent.appendChild(errorEntry);
+                            }
+                        } catch (e) {
+                            const errorEntry = document.createElement('div');
+                            errorEntry.style.color = '#dc3545';
+                            errorEntry.innerHTML = '❌ Ошибка парсинга ответа: ' + e.message;
+                            logContent.appendChild(errorEntry);
+                        }
+                    } else if (currentRequest.status === 0) {
+                        // Запрос был отменен
+                        const cancelEntry = document.createElement('div');
+                        cancelEntry.style.color = '#ffc107';
+                        cancelEntry.innerHTML = '⚠️ Импорт был отменен пользователем';
+                        logContent.appendChild(cancelEntry);
+                        logContent.scrollTop = logContent.scrollHeight;
+                    } else {
+                        const errorEntry = document.createElement('div');
+                        errorEntry.style.color = '#dc3545';
+                        errorEntry.innerHTML = '❌ Ошибка сети: ' + currentRequest.status;
+                        logContent.appendChild(errorEntry);
+                    }
+                    
+                    // Разблокируем кнопку
+                    importBtn.disabled = false;
+                    importBtn.textContent = '🚀 Импортировать товары';
+                    
+                    // Прокручиваем лог вниз
+                    logContent.scrollTop = logContent.scrollHeight;
+                }
+            };
+            
+            // Отправляем запрос
+            currentRequest.open('POST', importForm.action);
+            currentRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            currentRequest.send(formData);
+            
+            // Начинаем отслеживание прогресса с помощью периодических запросов
+            
+            // Начинаем периодический опрос для получения прогресса
+            progressInterval = setInterval(function() {
+                // Здесь мы могли бы делать запрос к серверу для получения прогресса
+                // Но так как у нас нет отдельного endpoint для этого,
+                // мы будем использовать простую эмуляцию
+                
+                // В реальной реализации здесь должен быть запрос к серверу
+                // для получения текущего прогресса
+                
+                // Делаем запрос к серверу для получения текущего прогресса
+                fetch('{% url "catalog:import_progress" %}', {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Обновляем прогресс
+                    const percentage = data.percentage || 0;
+                    const processed = data.processed || 0;
+                    const total = data.total || 0;
+                    
+                    progressFill.style.width = percentage + '%';
+                    
+                    // Находим существующий элемент прогресса или создаем новый если не найден
+                    let progressElement = document.getElementById('progress-entry');
+                    if (!progressElement) {
+                        progressElement = document.createElement('div');
+                        progressElement.id = 'progress-entry';
+                        progressElement.style.color = '#6c757d';
+                        logContent.appendChild(progressElement);
+                    }
+                    
+                    // Форматируем сообщение в зависимости от стадии импорта
+                    if (percentage >= 100) {
+                        progressElement.innerHTML = '✅ Импорт завершен!';
+                    } else if (total > 0) {
+                        // Обработка товаров
+                        progressElement.innerHTML = `⏳ Обработка товаров: ${processed} из ${total} (${percentage}%)`;
+                    } else {
+                        // Начальная стадия
+                        progressElement.innerHTML = `⏳ Подготовка к импорту...`;
+                    }
+                    
+                    logContent.scrollTop = logContent.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении прогресса:', error);
+                    // В случае ошибки продолжаем показывать последнее известное значение
+                });
+            }, 500);
+        });
+        
+        // Обработчик кнопки отмены
+        cancelBtn.addEventListener('click', function() {
+            if (currentRequest) {
+                // Сначала отправляем запрос на сервер для отмены импорта
+                fetch('{% url "catalog:cancel_import" %}', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Ответ сервера на отмену:', data);
+                })
+                .catch(error => {
+                    console.error('Ошибка при отмене импорта на сервере:', error);
+                })
+                .finally(() => {
+                    // Всегда выполняем эти действия после попытки отмены на сервере
+                    
+                    // Отменяем XMLHttpRequest на клиенте
+                    currentRequest.abort();
+                    currentRequest = null;
+                    
+                    // Останавливаем интервал обновления прогресса
+                    if (progressInterval) {
+                        clearInterval(progressInterval);
+                        progressInterval = null;
+                    }
+                    
+                    // Скрываем кнопку отмены
+                    cancelBtn.style.display = 'none';
+                    
+                    // Разблокируем кнопку импорта
+                    importBtn.disabled = false;
+                    importBtn.textContent = '🚀 Импортировать товары';
+                    
+                    // Добавляем сообщение об отмене в лог
+                    const cancelEntry = document.createElement('div');
+                    cancelEntry.style.color = '#ffc107';
+                    cancelEntry.innerHTML = '⚠️ Импорт был отменен пользователем';
+                    logContent.appendChild(cancelEntry);
+                    logContent.scrollTop = logContent.scrollHeight;
+                });
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

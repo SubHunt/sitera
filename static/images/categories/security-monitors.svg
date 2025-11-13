@@ -1,0 +1,97 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient24)"/>
+  <defs>
+    <linearGradient id="gradient24" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка мониторов видеонаблюдения -->
+  <g transform="translate(200, 150)">
+    <!-- Основной монитор видеонаблюдения -->
+    <rect x="-50" y="-35" width="100" height="70" rx="5" fill="#1a1a1a" opacity="0.9"/>
+    <rect x="-47" y="-32" width="94" height="64" rx="3" fill="#333" opacity="0.8"/>
+    
+    <!-- Экран с разделением на 4 квадрата (типично для видеонаблюдения) -->
+    <!-- Верхний левый квадрат -->
+    <rect x="-45" y="-30" width="44" height="30" fill="#047857" opacity="0.6"/>
+    <circle cx="-23" cy="-15" r="8" fill="#fbbf24" opacity="0.7"/>
+    <rect x="-35" y="-25" width="20" height="12" rx="2" fill="#065F46" opacity="0.5"/>
+    
+    <!-- Верхний правый квадрат -->
+    <rect x="1" y="-30" width="44" height="30" fill="#047857" opacity="0.6"/>
+    <circle cx="23" cy="-15" r="8" fill="#fbbf24" opacity="0.7"/>
+    <rect x="15" y="-25" width="20" height="12" rx="2" fill="#065F46" opacity="0.5"/>
+    
+    <!-- Нижний левый квадрат -->
+    <rect x="-45" y="0" width="44" height="30" fill="#047857" opacity="0.6"/>
+    <circle cx="-23" cy="15" r="8" fill="#fbbf24" opacity="0.7"/>
+    <rect x="-35" y="5" width="20" height="12" rx="2" fill="#065F46" opacity="0.5"/>
+    
+    <!-- Нижний правый квадрат -->
+    <rect x="1" y="0" width="44" height="30" fill="#047857" opacity="0.6"/>
+    <circle cx="23" cy="15" r="8" fill="#fbbf24" opacity="0.7"/>
+    <rect x="15" y="5" width="20" height="12" rx="2" fill="#065F46" opacity="0.5"/>
+    
+    <!-- Перекрестие на одном из квадратов -->
+    <line x1="-23" y1="-20" x2="-23" y2="-10" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+    <line x1="-28" y1="-15" x2="-18" y2="-15" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+    
+    <!-- Индикатор записи -->
+    <circle cx="40" cy="-28" r="2" fill="#ef4444" opacity="0.9"/>
+    <text x="35" y="-24" font-size="6" fill="white" opacity="0.8">REC</text>
+    
+    <!-- Подставка монитора -->
+    <rect x="-15" y="35" width="30" height="5" rx="2" fill="#333" opacity="0.9"/>
+    <rect x="-8" y="40" width="16" height="10" rx="3" fill="#222" opacity="0.9"/>
+    <rect x="-20" y="48" width="40" height="3" rx="1" fill="#1a1a1a" opacity="0.9"/>
+    
+    <!-- Дополнительный маленький монитор сбоку -->
+    <g transform="translate(70, -10)">
+      <rect x="-15" y="-10" width="30" height="20" rx="3" fill="#1a1a1a" opacity="0.8"/>
+      <rect x="-13" y="-8" width="26" height="16" rx="2" fill="#333" opacity="0.7"/>
+      
+      <!-- Экран с одним изображением -->
+      <rect x="-11" y="-6" width="22" height="12" fill="#047857" opacity="0.5"/>
+      <circle cx="0" cy="0" r="4" fill="#fbbf24" opacity="0.6"/>
+      
+      <!-- Подставка -->
+      <rect x="-5" y="10" width="10" height="3" rx="1" fill="#333" opacity="0.8"/>
+      <rect x="-3" y="13" width="6" height="5" rx="2" fill="#222" opacity="0.8"/>
+    </g>
+    
+    <!-- Камера видеонаблюдения (указывает на мониторы) -->
+    <g transform="translate(-70, -20)">
+      <!-- Корпус камеры -->
+      <rect x="-5" y="-3" width="15" height="8" rx="2" fill="#333" opacity="0.8"/>
+      
+      <!-- Объектив -->
+      <circle cx="8" cy="1" r="4" fill="#1a1a1a" opacity="0.9"/>
+      <circle cx="8" cy="1" r="2" fill="#333" opacity="0.8"/>
+      <circle cx="8" cy="1" r="1" fill="#666" opacity="0.7"/>
+      
+      <!-- Крепление -->
+      <rect x="-8" y="-1" width="5" height="4" rx="2" fill="#444" opacity="0.8"/>
+      <rect x="-10" y="0" width="4" height="2" rx="1" fill="#333" opacity="0.8"/>
+      
+      <!-- Индикатор -->
+      <circle cx="3" cy="-1" r="1" fill="#10b981" opacity="0.8"/>
+      
+      <!-- Линия обзора -->
+      <line x1="12" y1="1" x2="25" y2="-5" stroke="#10b981" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+    </g>
+    
+    <!-- Панель управления -->
+    <g transform="translate(0, 60)">
+      <rect x="-30" y="0" width="60" height="8" rx="2" fill="#333" opacity="0.8"/>
+      
+      <!-- Кнопки управления -->
+      <circle cx="-20" cy="4" r="2" fill="#10b981" opacity="0.8"/>
+      <circle cx="-10" cy="4" r="2" fill="#fbbf24" opacity="0.8"/>
+      <circle cx="0" cy="4" r="2" fill="#ef4444" opacity="0.8"/>
+      <circle cx="10" cy="4" r="2" fill="#666" opacity="0.7"/>
+      <circle cx="20" cy="4" r="2" fill="#666" opacity="0.7"/>
+    </g>
+  </g>
+</svg>

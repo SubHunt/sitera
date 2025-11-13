@@ -1,0 +1,60 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient13)"/>
+  <defs>
+    <linearGradient id="gradient13" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка переговорной комнаты -->
+  <g transform="translate(200, 150)">
+    <!-- Стол -->
+    <ellipse cx="0" cy="10" rx="50" ry="20" fill="white" opacity="0.9"/>
+    <ellipse cx="0" cy="8" rx="45" ry="18" fill="#1a1a1a"/>
+    
+    <!-- Стулья вокруг стола -->
+    <g transform="translate(-30, 5)">
+      <rect x="-8" y="-5" width="16" height="20" rx="3" fill="white" opacity="0.8"/>
+      <rect x="-6" y="-3" width="12" height="12" rx="2" fill="#047857" opacity="0.6"/>
+    </g>
+    
+    <g transform="translate(30, 5)">
+      <rect x="-8" y="-5" width="16" height="20" rx="3" fill="white" opacity="0.8"/>
+      <rect x="-6" y="-3" width="12" height="12" rx="2" fill="#047857" opacity="0.6"/>
+    </g>
+    
+    <g transform="translate(0, -15)">
+      <rect x="-8" y="-5" width="16" height="20" rx="3" fill="white" opacity="0.8"/>
+      <rect x="-6" y="-3" width="12" height="12" rx="2" fill="#047857" opacity="0.6"/>
+    </g>
+    
+    <!-- Экран на стене -->
+    <rect x="-35" y="-40" width="70" height="40" rx="3" fill="white" opacity="0.9"/>
+    <rect x="-32" y="-37" width="64" height="34" rx="2" fill="#1a1a1a"/>
+    
+    <!-- Презентация на экране -->
+    <rect x="-28" y="-33" width="56" height="8" rx="1" fill="#047857" opacity="0.7"/>
+    <rect x="-28" y="-20" width="35" height="4" rx="1" fill="white" opacity="0.5"/>
+    <rect x="-28" y="-14" width="40" height="4" rx="1" fill="white" opacity="0.5"/>
+    <rect x="-28" y="-8" width="30" height="4" rx="1" fill="white" opacity="0.5"/>
+    
+    <!-- Видеокамера -->
+    <circle cx="0" cy="-45" r="5" fill="white" opacity="0.9"/>
+    <circle cx="0" cy="-45" r="3" fill="#1a1a1a"/>
+    <circle cx="0" cy="-45" r="1.5" fill="#047857" opacity="0.8"/>
+    
+    <!-- Микрофоны на столе -->
+    <circle cx="-15" cy="8" r="3" fill="white" opacity="0.8"/>
+    <circle cx="-15" cy="8" r="2" fill="#1a1a1a"/>
+    <circle cx="15" cy="8" r="3" fill="white" opacity="0.8"/>
+    <circle cx="15" cy="8" r="2" fill="#1a1a1a"/>
+    
+    <!-- Стены комнаты -->
+    <line x1="-60" y1="-40" x2="-60" y2="30" stroke="white" stroke-width="2" opacity="0.3"/>
+    <line x1="60" y1="-40" x2="60" y2="30" stroke="white" stroke-width="2" opacity="0.3"/>
+    <line x1="-60" y1="30" x2="60" y2="30" stroke="white" stroke-width="2" opacity="0.3"/>
+  </g>
+  
+  
+</svg>

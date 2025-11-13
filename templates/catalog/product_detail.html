@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Хлебные крошки -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li>
+                <a href="{% url 'catalog:category_list' %}" class="hover:text-sitera-primary">Каталог</a>
+            </li>
+            <li>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </li>
+            <li>
+                <a href="{{ product.category.get_absolute_url }}" class="hover:text-sitera-primary">
+                    {{ product.category.name }}
+                </a>
+            </li>
+            {% if product.subcategory %}
+            <li>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </li>
+            <li>
+                <a href="{{ product.subcategory.get_absolute_url }}" class="hover:text-sitera-primary">
+                    {{ product.subcategory.name }}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </li>
+            <li class="text-gray-800 font-medium">{{ product.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Изображения товара -->
+        <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                {% if product.preview_image %}
+                    <img src="{{ product.preview_image.url }}"
+                         alt="{{ product.get_preview_image_alt_text }}"
+                         class="w-full h-96 object-contain rounded"
+                         id="main-image">
+                {% else %}
+                    <div class="w-full h-96 bg-gray-200 rounded flex items-center justify-center">
+                        <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Дополнительные изображения -->
+            {% if images %}
+            <div class="grid grid-cols-4 gap-2">
+                {% if product.preview_image %}
+                    <div class="cursor-pointer border-2 border-sitera-primary rounded p-1">
+                        <img src="{{ product.preview_image.url }}"
+                             alt="{{ product.get_preview_image_alt_text }}"
+                             class="w-full h-20 object-cover rounded"
+                             onclick="changeMainImage('{{ product.preview_image.url }}')">
+                    </div>
+                {% endif %}
+                {% for image in images %}
+                    <div class="cursor-pointer border-2 border-gray-200 hover:border-sitera-primary rounded p-1 transition-colors">
+                        <img src="{{ image.image.url }}"
+                             alt="{{ image.get_alt_text }}"
+                             class="w-full h-20 object-cover rounded"
+                             onclick="changeMainImage('{{ image.image.url }}')">
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Информация о товаре -->
+        <div class="space-y-6">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.title }}</h1>
+                {% if product.article %}
+                    <p class="text-lg text-gray-600">Артикул: {{ product.article }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <span class="px-3 py-1 text-sm font-medium rounded-full
+                    {% if product.availability == 'in_stock' %}
+                        bg-green-100 text-green-800
+                    {% else %}
+                        bg-yellow-100 text-yellow-800
+                    {% endif %}">
+                    {{ product.get_availability_display }}
+                </span>
+                <span class="text-sm text-gray-500">
+                    {{ product.views_count }} просмотров
+                </span>
+            </div>
+
+            <div class="bg-sitera-light p-6 rounded-lg">
+                <p class="text-lg text-gray-700 mb-4">
+                    Для получения цены и условий поставки, пожалуйста, запросите коммерческое предложение.
+                </p>
+                <button onclick="openContactModal()" 
+                        class="w-full bg-sitera-secondary text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                    Запросить КП
+                </button>
+            </div>
+
+            <!-- Краткая информация -->
+            {% if product.details %}
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Основные характеристики</h3>
+                <div class="space-y-2">
+                    {% for key, value in product.details.items %}
+                        {% if forloop.counter0 < 5 %}
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-600">{{ key }}:</span>
+                                <span class="font-medium text-gray-800">{{ value }}</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if product.details.items|length > 5 %}
+                    <button onclick="showAllDetails()" 
+                            class="mt-4 text-sitera-primary hover:text-blue-700 font-medium text-sm">
+                        Показать все характеристики
+                    </button>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Табы с подробной информацией -->
+    <div class="bg-white rounded-lg shadow-md">
+        <div class="border-b border-gray-200">
+            <nav class="flex space-x-8 px-6" aria-label="Tabs">
+                <button onclick="showTab('description')" 
+                        class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-sitera-primary text-sitera-primary"
+                        id="description-tab">
+                    Описание
+                </button>
+                <button onclick="showTab('details')" 
+                        class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                        id="details-tab">
+                    Характеристики
+                </button>
+            </nav>
+        </div>
+
+        <div class="p-6">
+            <!-- Таб с описанием -->
+            <div id="description-content" class="tab-content">
+                <div class="prose max-w-none">
+                    {{ product.description|linebreaks }}
+                </div>
+            </div>
+
+            <!-- Таб с характеристиками -->
+            <div id="details-content" class="tab-content hidden">
+                {% if product.details %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {% for key, value in product.details.items %}
+                            <div class="flex justify-between py-3 border-b border-gray-100">
+                                <span class="text-gray-600 font-medium">{{ key }}:</span>
+                                <span class="text-gray-800">{{ value }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-500">Характеристики не указаны</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Похожие товары -->
+    {% if similar_products %}
+    <div class="mt-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Похожие товары</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for similar_product in similar_products %}
+            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                <div class="relative">
+                    {% if similar_product.preview_image %}
+                        <img src="{{ similar_product.preview_image.url }}"
+                             alt="{{ similar_product.get_preview_image_alt_text }}"
+                             class="w-full h-48 object-cover rounded-t-lg">
+                    {% else %}
+                        <div class="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="absolute top-2 right-2">
+                        <span class="px-2 py-1 text-xs font-medium rounded-full
+                            {% if similar_product.availability == 'in_stock' %}
+                                bg-green-100 text-green-800
+                            {% else %}
+                                bg-yellow-100 text-yellow-800
+                            {% endif %}">
+                            {{ similar_product.get_availability_display }}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <h3 class="font-medium text-gray-800 mb-2 line-clamp-2">{{ similar_product.title }}</h3>
+                    <a href="{{ similar_product.get_absolute_url }}" 
+                       class="inline-flex items-center text-sitera-primary hover:text-blue-700 text-sm font-medium">
+                        Подробнее
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Модальное окно для запроса КП -->
+<div id="contactModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+    <div class="relative top-32 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-medium text-gray-900">Запрос коммерческого предложения</h3>
+                <button onclick="closeContactModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="kpRequestForm" action="{% url 'contacts:request_kp' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="product" value="{{ product.id }}">
+                
+                <div id="form-errors" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded hidden"></div>
+                <div id="form-success" class="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded hidden"></div>
+                
+                <div class="mb-3">
+                    <input type="text" name="name" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-sitera-primary focus:border-sitera-primary"
+                           placeholder="Ваше имя *">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="text" name="organization"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-sitera-primary focus:border-sitera-primary"
+                           placeholder="Название организации">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="tel" name="phone" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-sitera-primary focus:border-sitera-primary"
+                           placeholder="+7 (___) ___-__-__ *">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="email" name="email"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-sitera-primary focus:border-sitera-primary"
+                           placeholder="email@example.com">
+                </div>
+                
+                <div class="mb-3">
+                    <textarea name="message" rows="2"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-sitera-primary focus:border-sitera-primary"
+                              placeholder="Опишите ваш запрос..."></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeContactModal()"
+                            class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">
+                        Отмена
+                    </button>
+                    <button type="submit" id="submit-btn"
+                            class="px-4 py-2 bg-sitera-secondary text-white rounded-md hover:bg-green-700 transition-colors">
+                        Отправить запрос
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function changeMainImage(imageUrl) {
+    document.getElementById('main-image').src = imageUrl;
+}
+
+function showTab(tabName) {
+    // Скрыть все табы
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+    });
+    
+    // Убрать выделение со всех кнопок табов
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('border-sitera-primary', 'text-sitera-primary');
+        button.classList.add('border-transparent', 'text-gray-500');
+    });
+    
+    // Показать выбранный таб
+    document.getElementById(tabName + '-content').classList.remove('hidden');
+    
+    // Выделить выбранную кнопку
+    const selectedTab = document.getElementById(tabName + '-tab');
+    selectedTab.classList.remove('border-transparent', 'text-gray-500');
+    selectedTab.classList.add('border-sitera-primary', 'text-sitera-primary');
+}
+
+function showAllDetails() {
+    showTab('details');
+}
+
+function openContactModal() {
+    document.getElementById('contactModal').classList.remove('hidden');
+    // Сбрасываем форму и сообщения при открытии
+    document.getElementById('kpRequestForm').reset();
+    document.getElementById('form-errors').classList.add('hidden');
+    document.getElementById('form-success').classList.add('hidden');
+}
+
+function closeContactModal() {
+    document.getElementById('contactModal').classList.add('hidden');
+}
+// Обработка отправки формы через AJAX
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('kpRequestForm');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        // Показываем индикатор загрузки
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
+        
+        // Скрываем предыдущие сообщения
+        document.getElementById('form-errors').classList.add('hidden');
+        document.getElementById('form-success').classList.add('hidden');
+        
+        // Создаем FormData для отправки
+        const formData = new FormData(form);
+        
+        // Отправляем запрос
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                // Показываем сообщение об успехе
+                document.getElementById('form-success').textContent = data.message;
+                document.getElementById('form-success').classList.remove('hidden');
+                
+                // Очищаем форму
+                form.reset();
+                
+                // Закрываем модальное окно через 2 секунды
+                setTimeout(() => {
+                    closeContactModal();
+                }, 2000);
+            } else {
+                // Показываем ошибки
+                let errorMessages = [];
+                for (const field in data.errors) {
+                    errorMessages.push(...data.errors[field]);
+                }
+                
+                document.getElementById('form-errors').innerHTML = errorMessages.join('<br>');
+                document.getElementById('form-errors').classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            document.getElementById('form-errors').textContent = 'Произошла ошибка при отправке запроса. Пожалуйста, попробуйте еще раз.';
+            document.getElementById('form-errors').classList.remove('hidden');
+        })
+        .finally(() => {
+            // Возвращаем кнопку в исходное состояние
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        });
+    });
+});
+</script>
+{% endblock %}

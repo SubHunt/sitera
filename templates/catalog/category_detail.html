@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} - Каталог{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Хлебные крошки -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li>
+                <a href="{% url 'catalog:category_list' %}" class="hover:text-sitera-primary transition-colors">Каталог</a>
+            </li>
+            <li>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </li>
+            <li class="text-gray-800 font-medium">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Заголовок категории -->
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-8 border border-sitera-border">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ category.name }}</h1>
+                {% if category.description %}
+                    <p class="text-gray-600 text-lg leading-relaxed">{{ category.description }}</p>
+                {% endif %}
+                <div class="flex items-center space-x-4 mt-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sitera-light text-sitera-primary">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        {{ products.count }} товаров
+                    </span>
+                    {% if category.children.exists %}
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                            {{ category.children.count }} подкатегорий
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            {% if category.image %}
+                <div class="w-32 h-32 bg-gradient-to-br from-sitera-light to-white rounded-xl overflow-hidden shadow-md">
+                    <img src="{{ category.image.url }}" alt="{{ category.get_image_alt_text }}" class="w-full h-full object-cover">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Подкатегории -->
+    {% if category.children.exists %}
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <svg class="w-6 h-6 mr-2 text-sitera-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            Подкатегории
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {% for subcategory in category.children.all %}
+            <a href="{{ subcategory.get_absolute_url }}"
+               class="subcategory-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group border border-sitera-border hover:border-sitera-primary">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-gray-800 group-hover:text-sitera-primary transition-colors">{{ subcategory.name }}</h3>
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-sitera-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-600">{{ subcategory.products.count }} товаров</span>
+                    {% if subcategory.image %}
+                        <img src="{{ subcategory.image.url }}" alt="{{ subcategory.get_image_alt_text }}" class="w-8 h-8 object-cover rounded">
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Фильтры и сортировка -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border border-sitera-border">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+                <h3 class="text-lg font-semibold text-gray-800">Фильтры</h3>
+                <button id="reset-filters" class="text-sm text-sitera-primary hover:text-sitera-secondary transition-colors">
+                    Сбросить все
+                </button>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <label class="text-sm font-medium text-gray-700">Наличие:</label>
+                    <select id="availability-filter" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
+                        <option value="">Все товары</option>
+                        <option value="in_stock">В наличии</option>
+                        <option value="order">Под заказ</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                    <label class="text-sm font-medium text-gray-700">Сортировка:</label>
+                    <select id="sort-filter" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
+                        <option value="-created_at">Сначала новые</option>
+                        <option value="created_at">Сначала старые</option>
+                        <option value="title">По названию А-Я</option>
+                        <option value="-title">По названию Я-А</option>
+                        <option value="-views_count">По популярности</option>
+                    </select>
+                </div>
+
+                <!-- Переключатель вида -->
+                <div class="flex bg-gray-100 rounded-lg p-1">
+                    <button id="grid-view-products" class="px-3 py-1 text-sm font-medium text-white bg-sitera-primary rounded-md transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                    </button>
+                    <button id="list-view-products" class="px-3 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-md transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Товары -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">
+                Товары в категории {{ category.name }}
+            </h2>
+            <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                {{ products.count }} товаров
+            </span>
+        </div>
+        
+        <!-- Сетка товаров -->
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {% for product in products %}
+            <a href="{{ product.get_absolute_url }}" class="product-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group border border-sitera-border block"
+                 data-availability="{{ product.availability }}">
+                <div class="relative h-48 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
+                    {% if product.preview_image %}
+                        <img src="{{ product.preview_image.url }}"
+                             alt="{{ product.get_preview_image_alt_text }}"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {% else %}
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-sitera-light to-sitera-hover">
+                            <svg class="w-16 h-16 text-sitera-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="absolute top-3 right-3">
+                        <span class="px-2 py-1 text-xs font-medium rounded-full backdrop-blur-sm
+                            {% if product.availability == 'in_stock' %}
+                                bg-green-100/90 text-green-800
+                            {% else %}
+                                bg-yellow-100/90 text-yellow-800
+                            {% endif %}">
+                            {{ product.get_availability_display }}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-5">
+                    <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2 group-hover:text-sitera-primary transition-colors">
+                        {{ product.title }}
+                    </h3>
+                    
+                    {% if product.article %}
+                        <p class="text-sm text-gray-500 mb-3">Артикул: {{ product.article }}</p>
+                    {% endif %}
+                    
+                    <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ product.description|truncatewords:15 }}</p>
+                    
+                    <div class="flex items-center">
+                        <span class="text-xs text-gray-500 flex items-center">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            {{ product.views_count }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+            <div class="col-span-full text-center py-16">
+                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                </svg>
+                <p class="text-gray-500 text-lg font-medium">Товары в этой категории пока не добавлены</p>
+                <p class="text-gray-400 text-sm mt-2">Попробуйте посмотреть другие категории</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Список товаров (скрыт по умолчанию) -->
+        <div id="products-list" class="space-y-4 hidden">
+            {% for product in products %}
+            <a href="{{ product.get_absolute_url }}" class="product-list-item bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-sitera-border block">
+                <div class="flex items-center space-x-4">
+                    <div class="w-24 h-24 bg-gradient-to-br from-sitera-light to-white rounded-lg overflow-hidden flex-shrink-0">
+                        {% if product.preview_image %}
+                            <img src="{{ product.preview_image.url }}" alt="{{ product.get_preview_image_alt_text }}" class="w-full h-full object-cover">
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-sitera-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ product.title }}</h3>
+                                {% if product.article %}
+                                    <p class="text-sm text-gray-500 mb-2">Артикул: {{ product.article }}</p>
+                                {% endif %}
+                                <p class="text-sm text-gray-600 mb-3">{{ product.description|truncatewords:25 }}</p>
+                                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                    <span class="flex items-center">
+                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        {{ product.views_count }} просмотров
+                                    </span>
+                                    <span class="px-2 py-1 text-xs font-medium rounded-full
+                                        {% if product.availability == 'in_stock' %}
+                                            bg-green-100 text-green-800
+                                        {% else %}
+                                            bg-yellow-100 text-yellow-800
+                                        {% endif %}">
+                                        {{ product.get_availability_display }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const availabilityFilter = document.getElementById('availability-filter');
+    const sortFilter = document.getElementById('sort-filter');
+    const resetFilters = document.getElementById('reset-filters');
+    const productsGrid = document.getElementById('products-grid');
+    const productsList = document.getElementById('products-list');
+    const gridViewBtn = document.getElementById('grid-view-products');
+    const listViewBtn = document.getElementById('list-view-products');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    // Фильтрация и сортировка товаров
+    function filterAndSortProducts() {
+        const availabilityValue = availabilityFilter.value;
+        const sortValue = sortFilter.value;
+        
+        // Фильтрация по наличию
+        productCards.forEach(card => {
+            const cardAvailability = card.dataset.availability;
+            if (availabilityValue === '' || cardAvailability === availabilityValue) {
+                card.style.display = 'block';
+                card.classList.add('fade-in-up');
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Сортировка
+        if (sortValue) {
+            const container = document.getElementById('products-grid');
+            const cards = Array.from(container.querySelectorAll('.product-card')).filter(card => card.style.display !== 'none');
+            
+            cards.sort((a, b) => {
+                if (sortValue === 'title') {
+                    const titleA = a.querySelector('h3').textContent.trim();
+                    const titleB = b.querySelector('h3').textContent.trim();
+                    return titleA.localeCompare(titleB);
+                } else if (sortValue === '-title') {
+                    const titleA = a.querySelector('h3').textContent.trim();
+                    const titleB = b.querySelector('h3').textContent.trim();
+                    return titleB.localeCompare(titleA);
+                } else if (sortValue === '-views_count') {
+                    const viewsA = parseInt(a.querySelector('.text-xs.text-gray-500').textContent.trim());
+                    const viewsB = parseInt(b.querySelector('.text-xs.text-gray-500').textContent.trim());
+                    return viewsB - viewsA;
+                }
+                return 0;
+            });
+            
+            cards.forEach(card => container.appendChild(card));
+        }
+        
+        updateProductCount();
+    }
+    
+    // Обновление счетчика товаров
+    function updateProductCount() {
+        const visibleCards = Array.from(productCards).filter(card => card.style.display !== 'none');
+        const countBadge = document.querySelector('.text-sm.text-gray-500.bg-gray-100');
+        if (countBadge) {
+            countBadge.textContent = `${visibleCards.length} товаров`;
+        }
+    }
+    
+    // Переключение вида (сетка/список)
+    gridViewBtn.addEventListener('click', function() {
+        productsGrid.classList.remove('hidden');
+        productsList.classList.add('hidden');
+        this.classList.add('bg-sitera-primary', 'text-white');
+        this.classList.remove('text-gray-600');
+        listViewBtn.classList.remove('bg-sitera-primary', 'text-white');
+        listViewBtn.classList.add('text-gray-600');
+    });
+    
+    listViewBtn.addEventListener('click', function() {
+        productsGrid.classList.add('hidden');
+        productsList.classList.remove('hidden');
+        this.classList.add('bg-sitera-primary', 'text-white');
+        this.classList.remove('text-gray-600');
+        gridViewBtn.classList.remove('bg-sitera-primary', 'text-white');
+        gridViewBtn.classList.add('text-gray-600');
+    });
+    
+    // Сброс фильтров
+    resetFilters.addEventListener('click', function() {
+        availabilityFilter.value = '';
+        sortFilter.value = '-created_at';
+        filterAndSortProducts();
+    });
+    
+    // Обработчики событий
+    availabilityFilter.addEventListener('change', filterAndSortProducts);
+    sortFilter.addEventListener('change', filterAndSortProducts);
+    
+    // Анимация при загрузке страницы
+    productCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('fade-in-up');
+        }, index * 100);
+    });
+    
+    // Добавление эффекта параллакса при прокрутке
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.category-image-container');
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.5;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+    
+    // Ленивая загрузка изображений
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.add('fade-in-up');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.product-card img').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+});
+</script>
+{% endblock %}

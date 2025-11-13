@@ -1,0 +1,79 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient17)"/>
+  <defs>
+    <linearGradient id="gradient17" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#065F46;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка зала видеоконференцсвязи -->
+  <g transform="translate(200, 150)">
+    <!-- Комната -->
+    <rect x="-80" y="-60" width="160" height="100" rx="5" fill="white" opacity="0.9"/>
+    <rect x="-75" y="-55" width="150" height="90" rx="3" fill="#1a1a1a"/>
+    
+    <!-- Большой экран на стене -->
+    <rect x="-60" y="-45" width="80" height="45" rx="3" fill="#333"/>
+    <rect x="-55" y="-40" width="70" height="35" rx="2" fill="#4a5568"/>
+    
+    <!-- Участники на большом экране -->
+    <rect x="-50" y="-35" width="20" height="15" rx="2" fill="#666"/>
+    <circle cx="-40" cy="-27" r="3" fill="#999"/>
+    
+    <rect x="-25" y="-35" width="20" height="15" rx="2" fill="#666"/>
+    <circle cx="-15" cy="-27" r="3" fill="#999"/>
+    
+    <rect x="0" y="-35" width="20" height="15" rx="2" fill="#666"/>
+    <circle cx="10" cy="-27" r="3" fill="#999"/>
+    
+    <!-- Стол для переговоров -->
+    <ellipse cx="0" cy="20" rx="60" ry="20" fill="white" opacity="0.8"/>
+    <ellipse cx="0" cy="18" rx="55" ry="18" fill="#2d3748"/>
+    
+    <!-- Места для участников -->
+    <!-- Левая сторона -->
+    <ellipse cx="-40" cy="15" rx="12" ry="8" fill="white" opacity="0.7"/>
+    <circle cx="-40" cy="12" r="4" fill="#666"/>
+    
+    <ellipse cx="-25" cy="10" rx="12" ry="8" fill="white" opacity="0.7"/>
+    <circle cx="-25" cy="7" r="4" fill="#666"/>
+    
+    <!-- Правая сторона -->
+    <ellipse cx="40" cy="15" rx="12" ry="8" fill="white" opacity="0.7"/>
+    <circle cx="40" cy="12" r="4" fill="#666"/>
+    
+    <ellipse cx="25" cy="10" rx="12" ry="8" fill="white" opacity="0.7"/>
+    <circle cx="25" cy="7" r="4" fill="#666"/>
+    
+    <!-- Центральная камера -->
+    <rect x="-8" y="-50" width="16" height="8" rx="2" fill="white" opacity="0.8"/>
+    <circle cx="0" cy="-46" r="3" fill="#047857"/>
+    <polygon points="5,-48 10,-50 10,-44" fill="white" opacity="0.8"/>
+    
+    <!-- Микрофоны на столе -->
+    <circle cx="-30" cy="18" r="2" fill="white" opacity="0.8"/>
+    <circle cx="-10" cy="18" r="2" fill="white" opacity="0.8"/>
+    <circle cx="10" cy="18" r="2" fill="white" opacity="0.8"/>
+    <circle cx="30" cy="18" r="2" fill="white" opacity="0.8"/>
+    
+    <!-- Боковые мониторы -->
+    <rect x="20" y="-40" width="25" height="15" rx="2" fill="#333"/>
+    <rect x="22" y="-38" width="21" height="11" rx="1" fill="#4a5568"/>
+    <circle cx="32" cy="-32" r="2" fill="#666"/>
+    
+    <!-- Пульт управления -->
+    <rect x="-10" y="35" width="20" height="8" rx="2" fill="white" opacity="0.8"/>
+    <circle cx="-5" cy="39" r="1.5" fill="#047857"/>
+    <circle cx="0" cy="39" r="1.5" fill="#fbbf24"/>
+    <circle cx="5" cy="39" r="1.5" fill="#10b981"/>
+    
+    <!-- Индикаторы записи -->
+    <circle cx="50" cy="-40" r="2" fill="#dc2626" opacity="0.9"/>
+    <circle cx="55" cy="-40" r="2" fill="#10b981" opacity="0.9"/>
+    
+    <!-- Дверь -->
+    <rect x="70" y="-20" width="8" height="40" rx="2" fill="white" opacity="0.7"/>
+    <circle cx="75" cy="0" r="2" fill="#1a1a1a"/>
+  </g>
+</svg>

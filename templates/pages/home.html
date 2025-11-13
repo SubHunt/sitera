@@ -1,0 +1,472 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sitera - Профессиональное оборудование для синхронного перевода{% endblock %}
+{% block meta_description %}Sitera - поставщик профессионального оборудования для синхронного перевода, аудио/видео и конференц-медиа. Работаем по госзакупкам.{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Parallax -->
+<section class="hero-parallax text-white py-20 relative overflow-hidden min-h-screen flex items-center">
+{% comment %} <section class="hero-parallax text-white py-20 relative overflow-hidden min-h-screen flex items-center sm:items-start"> {% endcomment %}
+    <!-- Фоновые изображения с эффектом параллакса -->
+    <div class="parallax-container absolute inset-0">
+        <div class="parallax-layer parallax-bg" data-speed="0.5">
+            {% comment %}
+            <img src="{% static 'images/samples/Videoconferencing.jpg' %}" alt="Видеоконференц система - профессиональное оборудование для видеоконференций" class="w-full h-full object-cover">
+            {% endcomment %}
+        </div>
+        <div class="parallax-layer parallax-mid" data-speed="0.3">
+            <img src="{% static 'images/samples/Conference-system-Bosch-1.jpg' %}" alt="Конференц система Bosch - оборудование для переговорных комнат" class="w-full h-full object-cover opacity-70">
+        </div>
+        {% comment %}
+        <div class="parallax-layer parallax-front" data-speed="0.1">
+            <img src="{% static 'images/samples/Simultaneous-interpretation-systems-1.jpg' %}" alt="Система синхронного перевода - оборудование для синхронного перевода" class="w-full h-full object-cover opacity-50">
+        </div>
+        {% endcomment %}
+    </div>
+    
+    {% comment %} <!-- Градиентный оверлей для лучшей читаемости текста -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black/100 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+    <!-- Дополнительное общее затемнение -->
+    <div class="absolute inset-0 bg-black/40"></div>
+    <!-- Дополнительное затемнение для улучшения читаемости текста -->
+    <div class="absolute inset-0 bg-black/10"></div> {% endcomment %}
+
+    <!-- Контент -->
+    <div class="container mx-auto px-4 relative z-20">
+    {% comment %} <div class="container mx-auto px-4 relative z-20 -mt-20 sm:mt-8 md:mt-12"> {% endcomment %}
+        <div class="max-w-3xl">
+            <div class="animate-float text-white">
+                {% comment %} <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight"> {% endcomment %}
+                <h1 class="text-2xl sm:text-3xl md:text-6xl font-bold mb-6 leading-tight">
+                    Профессиональное оборудование для<br>
+                    <span class="text-white">синхронного перевода</span> и<br>
+                    конференц-систем
+                </h1>
+                {% comment %} <div class="text-lg sm:text-xl md:text-2xl mb-8 text-blue-100 space-y-3">
+                    <p class="font-semibold text-xl sm:text-2xl text-white">
+                        "От конференц-зала до ситуационного центра — под ключ."
+                    </p>
+                    <p class="text-base sm:text-lg">
+                        Надежные решения для переводческого оборудования и конференц-медиа.
+                    </p>
+                </div> {% endcomment %}
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{% url 'catalog:category_list' %}" class="btn-secondary text-center shadow-glow-secondary text-lg py-4 px-8">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        Смотреть каталог
+                    </a>
+                    <a href="#contact" class="bg-white text-sitera-primary hover:bg-blue-50 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center text-lg">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        Получить прайс
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    {% comment %} <!-- Индикатор прокрутки -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div> {% endcomment %}
+</section>
+
+<!-- Старый Hero Section (закомментирован для возможного отката) -->
+{% comment %}
+<section class="hero-gradient text-white py-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-float">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                    Профессиональное оборудование для<br>
+                    <span class="text-gradient text-white">синхронного перевода</span> и<br>
+                    конференц-систем
+                </h1>
+                <div class="text-lg mb-6 text-blue-100 space-y-2">
+                    <p class="font-semibold text-xl text-white">
+                        "От конференц-зала до ситуационного центра — под ключ."
+                    </p>
+                    <p>
+                        Надежные решения для переводческого оборудования и конференц-медиа.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{% url 'catalog:category_list' %}" class="btn-secondary text-center shadow-glow-secondary">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        Смотреть каталог
+                    </a>
+                    <a href="#contact" class="bg-white text-sitera-primary hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        Получить консультацию
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-sitera-primary rounded-xl opacity-20 blur-xl"></div>
+                    <img src="{% static 'images/logo.png' %}" alt="Sitera Equipment - логотип компании профессионального оборудования" class="relative rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300 bg-transparent">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endcomment %}
+
+<!-- Stats Section -->
+<section class="py-12 bg-sitera-dark text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-sitera-secondary mb-2" data-counter="15" data-suffix="+">15+</div>
+                <div class="text-gray-300">Лет на рынке</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-sitera-secondary mb-2" data-counter="1000" data-suffix="+">1000+</div>
+                <div class="text-gray-300">Довольных клиентов</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-sitera-secondary mb-2" data-counter="50" data-suffix="+">50+</div>
+                <div class="text-gray-300">Партнеров</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-sitera-secondary mb-2" data-counter="24" data-suffix="/7">24/7</div>
+                <div class="text-gray-300">Поддержка</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 section-gradient">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-sitera-dark mb-4">
+                Почему выбирают <span class="text-gradient">Sitera</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Мы предлагаем комплексные решения для организации конференций и переговоров любого уровня
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="feature-card">
+                <div class="w-16 h-16 bg-sitera-primary rounded-full flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-sitera-dark">Гарантия качества</h3>
+                <p class="text-gray-600">
+                    Только сертифицированное оборудование от ведущих мировых производителей с официальной гарантией
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="w-16 h-16 bg-sitera-secondary rounded-full flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-sitera-dark">Быстрая доставка</h3>
+                <p class="text-gray-600">
+                    Оперативная доставка по Казахстану.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="w-16 h-16 bg-sitera-primary rounded-full flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-sitera-dark">Техническая поддержка</h3>
+                <p class="text-gray-600">
+                    Профессиональная консультация, подбор оборудования и техническая поддержка на всех этапах
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-sitera-dark mb-4">
+                Категории оборудования
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Широкий ассортимент оборудования для организации конференций и переговоров
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            {% for category in main_categories %}
+            <div class="category-card group">
+                <div class="relative overflow-hidden h-48">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="{{ category.get_image_alt_text }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    {% else %}
+                        {% if "синхронн" in category.name|lower %}
+                            <img src="{% static 'images/categories/sync-translation.svg' %}" alt="{{ category.name }} - оборудование для синхронного перевода" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "видеоконференц" in category.name|lower or "видеоконференции" in category.name|lower %}
+                            <img src="{% static 'images/categories/video-conference.svg' %}" alt="{{ category.name }} - видеоконференц оборудование" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "микрофон" in category.name|lower %}
+                            <img src="{% static 'images/categories/microphones.svg' %}" alt="{{ category.name }} - микрофонные системы" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "дисплей" in category.name|lower or "видеостена" in category.name|lower %}
+                            <img src="{% static 'images/categories/video-walls.svg' %}" alt="{{ category.name }} - видео стены и дисплеи" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "наушник" in category.name|lower %}
+                            <img src="{% static 'images/categories/headphones.svg' %}" alt="{{ category.name }} - наушники и гарнитуры" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "проектор" in category.name|lower %}
+                            <img src="{% static 'images/categories/projectors.svg' %}" alt="{{ category.name }} - проекторы и экраны" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "аудиосистем" in category.name|lower %}
+                            <img src="{% static 'images/categories/audio-systems.svg' %}" alt="{{ category.name }} - аудиосистемы" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "интерактив" in category.name|lower %}
+                            <img src="{% static 'images/categories/interactive-devices.svg' %}" alt="{{ category.name }} - интерактивное оборудование" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "цифров" in category.name|lower %}
+                            <img src="{% static 'images/categories/digital-signage.svg' %}" alt="{{ category.name }} - цифровая реклама" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "камер" in category.name|lower %}
+                            <img src="{% static 'images/categories/cameras.svg' %}" alt="{{ category.name }} - камеры и видеонаблюдение" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "документ" in category.name|lower %}
+                            <img src="{% static 'images/categories/document-cameras.svg' %}" alt="{{ category.name }} - документ камеры" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "переговор" in category.name|lower %}
+                            <img src="{% static 'images/categories/meeting-rooms.svg' %}" alt="{{ category.name }} - оборудование для переговорных комнат" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% elif "коммутаци" in category.name|lower or "ав" in category.name|lower %}
+                            <img src="{% static 'images/categories/av-switching.svg' %}" alt="{{ category.name }} - AV коммутация" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% else %}
+                            <img src="{% static 'images/categories/video-conference.svg' %}" alt="{{ category.name }} - профессиональное оборудование" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% endif %}
+                    {% endif %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-sitera-dark">{{ category.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ category.description|default:"Оборудование для профессионального использования" }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="badge badge-primary">{{ category.products.count }} товаров</span>
+                        <a href="{{ category.get_absolute_url }}" class="text-sitera-primary hover:text-sitera-secondary font-semibold flex items-center">
+                            Подробнее
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-gray-500 text-lg">Категории пока не добавлены</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'catalog:category_list' %}" class="btn-primary shadow-glow">
+                Все категории
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Наши партнеры</h2>
+        <div class="relative overflow-hidden">
+            <!-- Carousel Container -->
+            <div id="partners-carousel" class="flex">
+                <!-- Partners will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Products Section -->
+{% if latest_products %}
+<section class="py-20 section-gradient">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-sitera-dark mb-4">
+                Новинки каталога
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Последние поступления оборудования для конференц-залов и переговорных комнат
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {% for product in latest_products %}
+            <div class="product-card group">
+                <div class="relative overflow-hidden h-40">
+                    {% if product.preview_image %}
+                        <img src="{{ product.preview_image.url }}" alt="{{ product.get_preview_image_alt_text }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    {% else %}
+                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-2 right-2">
+                        <span class="badge badge-accent">Новинка</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold mb-2 text-sitera-dark">{{ product.title|truncatewords:5 }}</h3>
+                    <p class="text-gray-600 text-sm mb-3">{{ product.description|truncatewords:10 }}</p>
+                    <div class="flex justify-between items-center">
+                        {% if product.price %}
+                            <span class="price-tag">{{ product.price }} ₽</span>
+                        {% else %}
+                            <span class="text-gray-500 text-sm font-medium">По запросу</span>
+                        {% endif %}
+                        <a href="{{ product.get_absolute_url }}" class="text-sitera-primary hover:text-sitera-secondary text-sm font-semibold flex items-center">
+                            Подробнее
+                            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'catalog:category_list' %}" class="btn-secondary shadow-glow-secondary">
+                Весь каталог
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Government Procurement Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-sitera-dark mb-6">Работаем по госзакупкам</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="text-left">
+                    <h3 class="text-xl font-semibold mb-4 text-sitera-primary">Наши преимущества</h3>
+                    <ul class="space-y-2 text-sitera-gray">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Полный пакет документов
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Участие в электронных торгах
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Соблюдение всех требований законодательства
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-left">
+                    <h3 class="text-xl font-semibold mb-4 text-sitera-primary">Условия сотрудничества</h3>
+                    <ul class="space-y-2 text-sitera-gray">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Гибкие условия закупок
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Индивидуальный подход к каждому заказчику
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Оперативная обработка заявок
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#contact" class="btn-secondary">
+                Получить прайс
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section id="contact" class="py-20 section-gradient">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sitera-dark mb-4">
+                    Получите <span class="text-gradient">консультацию эксперта</span>
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Оставьте заявку и наши специалисты подберут оптимальное решение под ваши задачи
+                </p>
+            </div>
+            
+            <div class="card-featured">
+                <form id="contact-form" action="/contacts/consultation/" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="form-label">Ваше имя *</label>
+                            <input type="text" id="name" name="name" required class="form-input" placeholder="Ваше имя">
+                        </div>
+                        <div>
+                            <label for="organization" class="form-label">Компания</label>
+                            <input type="text" id="organization" name="organization" class="form-input" placeholder="Название организации">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="phone" class="form-label">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" required class="form-input" placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" required class="form-input" placeholder="email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="form-label">Опишите вашу задачу</label>
+                        <textarea id="message" name="message" rows="4" class="form-input" placeholder="Опишите вашу задачу..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary shadow-glow">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Отправить заявку
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

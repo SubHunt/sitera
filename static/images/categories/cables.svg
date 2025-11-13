@@ -1,0 +1,96 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient21)"/>
+  <defs>
+    <linearGradient id="gradient21" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка кабелей -->
+  <g transform="translate(200, 150)">
+    <!-- Витая пара -->
+    <g transform="translate(-30, -20)">
+      <path d="M 0,0 Q 5,-3 10,0 Q 15,3 20,0" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.8"/>
+      <path d="M 0,2 Q 5,-1 10,2 Q 15,5 20,2" stroke="#10b981" stroke-width="2" fill="none" opacity="0.8"/>
+      <path d="M 0,4 Q 5,1 10,4 Q 15,7 20,4" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.8"/>
+      <path d="M 0,6 Q 5,3 10,6 Q 15,9 20,6" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.8"/>
+      
+      <!-- Разъем RJ45 -->
+      <rect x="20" y="0" width="8" height="8" rx="1" fill="white" opacity="0.9"/>
+      <rect x="22" y="2" width="4" height="4" rx="1" fill="#1a1a1a"/>
+    </g>
+    
+    <!-- Коаксиальный кабель -->
+    <g transform="translate(30, -20)">
+      <line x1="0" y1="0" x2="30" y2="0" stroke="#1a1a1a" stroke-width="4" opacity="0.8"/>
+      <line x1="0" y1="0" x2="30" y2="0" stroke="white" stroke-width="2" opacity="0.8"/>
+      <line x1="0" y1="0" x2="30" y2="0" stroke="#1a1a1a" stroke-width="1" opacity="0.9"/>
+      
+      <!-- Разъем BNC -->
+      <circle cx="30" cy="0" r="4" fill="white" opacity="0.9"/>
+      <circle cx="30" cy="0" r="2" fill="#1a1a1a"/>
+      <circle cx="30" cy="0" r="1" fill="white" opacity="0.8"/>
+    </g>
+    
+    <!-- HDMI кабель -->
+    <g transform="translate(-30, 10)">
+      <rect x="0" y="-2" width="30" height="4" rx="2" fill="#1a1a1a" opacity="0.8"/>
+      <rect x="0" y="-1" width="30" height="2" rx="1" fill="#047857" opacity="0.6"/>
+      
+      <!-- HDMI разъем -->
+      <rect x="30" y="-4" width="10" height="8" rx="2" fill="white" opacity="0.9"/>
+      <rect x="32" y="-2" width="6" height="4" rx="1" fill="#1a1a1a"/>
+    </g>
+    
+    <!-- USB кабель -->
+    <g transform="translate(30, 10)">
+      <rect x="0" y="-1.5" width="25" height="3" rx="1.5" fill="#1a1a1a" opacity="0.8"/>
+      <rect x="0" y="-0.5" width="25" height="1" rx="0.5" fill="#3b82f6" opacity="0.6"/>
+      
+      <!-- USB разъем -->
+      <rect x="25" y="-3" width="8" height="6" rx="1" fill="white" opacity="0.9"/>
+      <rect x="27" y="-1" width="4" height="2" rx="1" fill="#1a1a1a"/>
+    </g>
+    
+    <!-- Аудиокабель (3.5mm) -->
+    <g transform="translate(0, 0)">
+      <line x1="-15" y1="0" x2="15" y2="0" stroke="#1a1a1a" stroke-width="2" opacity="0.8"/>
+      <line x1="-15" y1="0" x2="15" y2="0" stroke="white" stroke-width="1" opacity="0.8"/>
+      
+      <!-- Mini-jack разъемы -->
+      <circle cx="-15" cy="0" r="3" fill="white" opacity="0.9"/>
+      <circle cx="-15" cy="0" r="1.5" fill="#1a1a1a"/>
+      <circle cx="-15" cy="0" r="0.5" fill="white" opacity="0.8"/>
+      
+      <circle cx="15" cy="0" r="3" fill="white" opacity="0.9"/>
+      <circle cx="15" cy="0" r="1.5" fill="#1a1a1a"/>
+      <circle cx="15" cy="0" r="0.5" fill="white" opacity="0.8"/>
+    </g>
+    
+    <!-- Кабель питания -->
+    <g transform="translate(0, -35)">
+      <line x1="-20" y1="0" x2="20" y2="0" stroke="#1a1a1a" stroke-width="3" opacity="0.8"/>
+      <line x1="-20" y1="0" x2="20" y2="0" stroke="white" stroke-width="1" opacity="0.8"/>
+      
+      <!-- Вилка питания -->
+      <rect x="-25" y="-3" width="5" height="6" rx="1" fill="white" opacity="0.9"/>
+      <rect x="-23" y="-1" width="1" height="2" rx="0.5" fill="#1a1a1a"/>
+      <rect x="-20" y="-1" width="1" height="2" rx="0.5" fill="#1a1a1a"/>
+    </g>
+    
+    <!-- Моток кабеля -->
+    <g transform="translate(0, 35)">
+      <ellipse cx="0" cy="0" rx="15" ry="8" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.6"/>
+      <ellipse cx="0" cy="0" rx="12" ry="6" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+      <ellipse cx="0" cy="0" rx="9" ry="4" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.4"/>
+      <ellipse cx="0" cy="0" rx="6" ry="3" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.3"/>
+      
+      <!-- Концы кабеля -->
+      <line x1="15" y1="0" x2="20" y2="0" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+      <line x1="-15" y1="0" x2="-20" y2="0" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    </g>
+  </g>
+  
+  
+</svg>

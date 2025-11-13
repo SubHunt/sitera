@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новый запрос - Sitera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background: #f9fafb;
+            padding: 30px;
+            border: 1px solid #e5e7eb;
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        .field-label {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .field-value {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e5e7eb;
+        }
+        .footer {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 5px 5px;
+            font-size: 14px;
+        }
+        .urgent {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Новый запрос на сайте Sitera</h1>
+    </div>
+    
+    <div class="content">
+        <div class="urgent">
+            <strong>Внимание!</strong> Поступил новый запрос от клиента. Пожалуйста, обработайте его в кратчайшие сроки.
+        </div>
+        
+        <div class="field">
+            <div class="field-label">Тип запроса:</div>
+            <div class="field-value">{{ request_type_display }}{{ product_info }}</div>
+        </div>
+        
+        <div class="field">
+            <div class="field-label">Имя:</div>
+            <div class="field-value">{{ contact_request.name }}</div>
+        </div>
+        
+        {% if contact_request.organization %}
+        <div class="field">
+            <div class="field-label">Организация:</div>
+            <div class="field-value">{{ contact_request.organization }}</div>
+        </div>
+        {% endif %}
+        
+        <div class="field">
+            <div class="field-label">Телефон:</div>
+            <div class="field-value">{{ formatted_phone }}</div>
+        </div>
+        
+        {% if contact_request.email %}
+        <div class="field">
+            <div class="field-label">Email:</div>
+            <div class="field-value">{{ contact_request.email }}</div>
+        </div>
+        {% endif %}
+        
+        {% if contact_request.product %}
+        <div class="field">
+            <div class="field-label">Интересующий товар:</div>
+            <div class="field-value">
+                <a href="{{ request.build_absolute_uri }}{{ contact_request.product.get_absolute_url }}">
+                    {{ contact_request.product.title }}
+                </a>
+                {% if contact_request.product.article %}
+                    (Артикул: {{ contact_request.product.article }})
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if contact_request.message %}
+        <div class="field">
+            <div class="field-label">Сообщение:</div>
+            <div class="field-value">{{ contact_request.message|linebreaks }}</div>
+        </div>
+        {% endif %}
+        
+        <div class="field">
+            <div class="field-label">Дата и время:</div>
+            <div class="field-value">{{ contact_request.created_at|date:"d.m.Y H:i" }}</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Sitera - Профессиональное оборудование для синхронного перевода</p>
+        <p>Это автоматическое уведомление с сайта sitera.kz</p>
+    </div>
+</body>
+</html>

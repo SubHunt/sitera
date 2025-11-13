@@ -1,0 +1,77 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" alt="Sitera Favicon">
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Фикс для отображения текста в Select2
+    function fixSelect2Display() {
+        const select2Containers = document.querySelectorAll('.select2-container');
+        select2Containers.forEach(function(container) {
+            const rendered = container.querySelector('.select2-selection__rendered');
+            if (rendered) {
+                // Принудительно устанавливаем стили для отображения текста
+                rendered.style.lineHeight = '40px';
+                rendered.style.height = '40px';
+                rendered.style.display = 'block';
+                rendered.style.verticalAlign = 'middle';
+                rendered.style.margin = '0';
+                rendered.style.padding = '0 12px 0 12px';
+                rendered.style.whiteSpace = 'pre';
+                rendered.style.overflow = 'hidden';
+                rendered.style.textOverflow = 'ellipsis';
+                rendered.style.color = '#555';
+                rendered.style.fontSize = '14px';
+                rendered.style.position = 'static';
+                rendered.style.transform = 'none';
+                rendered.style.top = 'auto';
+                rendered.style.left = 'auto';
+                rendered.style.right = 'auto';
+                rendered.style.bottom = 'auto';
+            }
+            
+            const selection = container.querySelector('.select2-selection--single');
+            if (selection) {
+                selection.style.height = '40px';
+                selection.style.lineHeight = '40px';
+                selection.style.overflow = 'hidden';
+            }
+            
+            const arrow = container.querySelector('.select2-selection__arrow');
+            if (arrow) {
+                arrow.style.height = '38px';
+                arrow.style.top = '1px';
+                arrow.style.right = '1px';
+                arrow.style.width = '30px';
+            }
+        });
+    }
+    
+    // Применяем фикс сразу
+    fixSelect2Display();
+    
+    // Наблюдаем за изменениями в DOM (для динамически создаваемых элементов)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                setTimeout(fixSelect2Display, 100); // Небольшая задержка для инициализации
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    // Применяем фикс периодически на всякий случай
+    setInterval(fixSelect2Display, 2000);
+});
+</script>
+{% endblock %}

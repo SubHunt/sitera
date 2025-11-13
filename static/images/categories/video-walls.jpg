@@ -1,0 +1,16 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8F9FA"/>
+  <rect x="50" y="50" width="80" height="60" fill="#0066CC" rx="3"/>
+  <rect x="140" y="50" width="80" height="60" fill="#0066CC" rx="3"/>
+  <rect x="230" y="50" width="80" height="60" fill="#0066CC" rx="3"/>
+  <rect x="320" y="50" width="30" height="60" fill="#0066CC" rx="3"/>
+  <rect x="50" y="120" width="80" height="60" fill="#00A86B" rx="3"/>
+  <rect x="140" y="120" width="80" height="60" fill="#00A86B" rx="3"/>
+  <rect x="230" y="120" width="80" height="60" fill="#00A86B" rx="3"/>
+  <rect x="320" y="120" width="30" height="60" fill="#00A86B" rx="3"/>
+  <rect x="50" y="190" width="80" height="60" fill="#495057" rx="3"/>
+  <rect x="140" y="190" width="80" height="60" fill="#495057" rx="3"/>
+  <rect x="230" y="190" width="80" height="60" fill="#495057" rx="3"/>
+  <rect x="320" y="190" width="30" height="60" fill="#495057" rx="3"/>
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="18" fill="#495057" text-anchor="middle">Видеостены</text>
+</svg>

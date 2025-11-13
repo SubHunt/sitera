@@ -1,0 +1,72 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient20)"/>
+  <defs>
+    <linearGradient id="gradient20" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка готового комплекта -->
+  <g transform="translate(200, 150)">
+    <!-- Коробка/кейс -->
+    <rect x="-40" y="-25" width="80" height="50" rx="5" fill="white" opacity="0.9"/>
+    <rect x="-35" y="-20" width="70" height="40" rx="3" fill="#1a1a1a"/>
+    
+    <!-- Ручка кейса -->
+    <rect x="-10" y="-30" width="20" height="8" rx="4" fill="white" opacity="0.8"/>
+    <rect x="-8" y="-28" width="16" height="4" rx="2" fill="#1a1a1a"/>
+    
+    <!-- Замки кейса -->
+    <rect x="-35" y="-5" width="5" height="8" rx="2" fill="white" opacity="0.7"/>
+    <rect x="30" y="-5" width="5" height="8" rx="2" fill="white" opacity="0.7"/>
+    
+    <!-- Содержимое кейса (оборудование) -->
+    <!-- Микрофон -->
+    <g transform="translate(-20, -5)">
+      <circle cx="0" cy="0" r="4" fill="white" opacity="0.8"/>
+      <circle cx="0" cy="0" r="2" fill="#1a1a1a"/>
+      <rect x="-1" y="4" width="2" height="6" rx="1" fill="white" opacity="0.7"/>
+    </g>
+    
+    <!-- Наушники -->
+    <g transform="translate(0, -5)">
+      <path d="M -6,0 Q -6,-4 0,-4 Q 6,-4 6,0" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+      <rect x="-7" y="0" width="3" height="4" rx="1" fill="white" opacity="0.8"/>
+      <rect x="4" y="0" width="3" height="4" rx="1" fill="white" opacity="0.8"/>
+    </g>
+    
+    <!-- Пульт управления -->
+    <g transform="translate(20, -5)">
+      <rect x="-6" y="-3" width="12" height="6" rx="2" fill="white" opacity="0.8"/>
+      <rect x="-4" y="-1" width="8" height="2" rx="1" fill="#1a1a1a"/>
+      <circle cx="-2" cy="0" r="0.5" fill="#047857" opacity="0.7"/>
+      <circle cx="2" cy="0" r="0.5" fill="#047857" opacity="0.7"/>
+    </g>
+    
+    <!-- Кабели -->
+    <g transform="translate(-10, 8)">
+      <circle cx="0" cy="0" r="2" fill="white" opacity="0.7"/>
+      <path d="M 2,0 Q 8,-2 10,2" stroke="white" stroke-width="1" fill="none" opacity="0.6"/>
+      <circle cx="10" cy="2" r="1.5" fill="white" opacity="0.6"/>
+    </g>
+    
+    <g transform="translate(10, 8)">
+      <circle cx="0" cy="0" r="2" fill="white" opacity="0.7"/>
+      <path d="M -2,0 Q -8,-2 -10,2" stroke="white" stroke-width="1" fill="none" opacity="0.6"/>
+      <circle cx="-10" cy="2" r="1.5" fill="white" opacity="0.6"/>
+    </g>
+    
+    <!-- Галочка готовности -->
+    <g transform="translate(25, -20)">
+      <circle cx="0" cy="0" r="8" fill="#10b981" opacity="0.9"/>
+      <path d="M -3,0 L -1,2 L 3,-2" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    
+    <!-- Этикетка комплекта -->
+    <rect x="-25" y="-15" width="20" height="8" rx="2" fill="#047857" opacity="0.7"/>
+    
+  </g>
+  
+  
+</svg>

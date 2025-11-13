@@ -1,0 +1,50 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient12)"/>
+  <defs>
+    <linearGradient id="gradient12" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка документ-камеры -->
+  <g transform="translate(200, 150)">
+    <!-- Основание -->
+    <rect x="-30" y="20" width="60" height="8" rx="4" fill="white" opacity="0.8"/>
+    
+    <!-- Штатив -->
+    <rect x="-3" y="-10" width="6" height="30" rx="3" fill="white" opacity="0.9"/>
+    
+    <!-- Головка камеры -->
+    <circle cx="0" cy="-20" r="12" fill="white" opacity="0.9"/>
+    <circle cx="0" cy="-20" r="9" fill="#1a1a1a"/>
+    <circle cx="0" cy="-20" r="6" fill="#047857" opacity="0.7"/>
+    <circle cx="0" cy="-20" r="3" fill="#1a1a1a"/>
+    
+    <!-- Объектив -->
+    <rect x="-4" y="-15" width="8" height="6" rx="2" fill="white" opacity="0.8"/>
+    <circle cx="0" cy="-12" r="2" fill="#047857" opacity="0.8"/>
+    
+    <!-- Документ под камерой -->
+    <rect x="-25" y="5" width="50" height="15" rx="2" fill="white" opacity="0.7"/>
+    <rect x="-22" y="7" width="44" height="11" rx="1" fill="#f3f4f6"/>
+    
+    <!-- Текст на документе -->
+    <rect x="-18" y="9" width="30" height="2" rx="1" fill="#047857" opacity="0.5"/>
+    <rect x="-18" y="12" width="25" height="2" rx="1" fill="#047857" opacity="0.4"/>
+    <rect x="-18" y="15" width="28" height="2" rx="1" fill="#047857" opacity="0.4"/>
+    
+    <!-- Свет от камеры -->
+    <path d="M 0,-20 L -20,5 L 20,5 Z" fill="white" opacity="0.2"/>
+    
+    <!-- Кнопки на основании -->
+    <circle cx="-15" cy="24" r="2" fill="#047857" opacity="0.7"/>
+    <circle cx="0" cy="24" r="2" fill="#047857" opacity="0.7"/>
+    <circle cx="15" cy="24" r="2" fill="#047857" opacity="0.7"/>
+    
+    <!-- Светодиодный индикатор -->
+    <circle cx="8" cy="-22" r="1.5" fill="#10b981" opacity="0.9"/>
+  </g>
+  
+  
+</svg>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Запрос консультации - Sitera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background: #f9fafb;
+            padding: 30px;
+            border: 1px solid #e5e7eb;
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        .field-label {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .field-value {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e5e7eb;
+        }
+        .footer {
+            background: #065F46;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 5px 5px;
+            font-size: 14px;
+        }
+        .urgent {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Запрос консультации с главной страницы</h1>
+    </div>
+    
+    <div class="content">
+        <div class="urgent">
+            <strong>Внимание!</strong> Поступил новый запрос на консультацию с главной страницы сайта.
+        </div>
+        
+        <div class="field">
+            <div class="field-label">Тип запроса:</div>
+            <div class="field-value">{{ request_type }}</div>
+        </div>
+        
+        <div class="field">
+            <div class="field-label">Имя:</div>
+            <div class="field-value">{{ name }}</div>
+        </div>
+        
+        {% if organization %}
+        <div class="field">
+            <div class="field-label">Организация:</div>
+            <div class="field-value">{{ organization }}</div>
+        </div>
+        {% endif %}
+        
+        <div class="field">
+            <div class="field-label">Телефон:</div>
+            <div class="field-value">{{ formatted_phone }}</div>
+        </div>
+        
+        {% if email %}
+        <div class="field">
+            <div class="field-label">Email:</div>
+            <div class="field-value">{{ email }}</div>
+        </div>
+        {% endif %}
+        
+        {% if message %}
+        <div class="field">
+            <div class="field-label">Сообщение:</div>
+            <div class="field-value">{{ message|linebreaks }}</div>
+        </div>
+        {% endif %}
+        
+        <div class="field">
+            <div class="field-label">Дата и время:</div>
+            <div class="field-value">{% now "d.m.Y H:i" %}</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Sitera - Профессиональное оборудование для синхронного перевода</p>
+        <p>Это автоматическое уведомление с сайта sitera.kz</p>
+    </div>
+</body>
+</html>

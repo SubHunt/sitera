@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Каталог оборудования{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">Каталог оборудования</h1>
+    
+    <div class="flex flex-col lg:flex-row gap-8">
+        {% comment %} <!-- Боковая панель со списком категорий -->
+        <div class="lg:w-1/4">
+            <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24 border border-sitera-border">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-sitera-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    Все категории
+                </h2>
+                
+                <!-- Поиск по категориям -->
+                <div class="mb-4">
+                    <div class="relative">
+                        <input type="text"
+                               id="category-search"
+                               placeholder="Поиск категории..."
+                               class="w-full px-3 py-2 pl-9 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
+                        <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <ul class="space-y-1" id="category-list">
+                    {% for category in categories %}
+                    <li>
+                        <a href="{{ category.get_absolute_url }}"
+                           class="category-link block py-3 px-3 text-gray-700 hover:bg-sitera-light hover:text-sitera-primary rounded-lg transition-all duration-200 flex items-center justify-between group">
+                            <span class="flex items-center">
+                                {% if category.image %}
+                                    <img src="{{ category.image.url }}" alt="{{ category.get_image_alt_text }}" class="w-5 h-5 mr-2 object-cover rounded">
+                                {% else %}
+                                    <svg class="w-5 h-5 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                {% endif %}
+                                {{ category.name }}
+                            </span>
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                {{ category.products.count }}
+                            </span>
+                        </a>
+                        
+                        <!-- Подкатегории -->
+                        {% if category.children.exists %}
+                        <ul class="ml-8 mt-1 space-y-1 hidden" id="subcategory-{{ category.id }}">
+                            {% for subcategory in category.children.all %}
+                            <li>
+                                <a href="{{ subcategory.get_absolute_url }}"
+                                   class="block py-2 px-3 text-sm text-gray-600 hover:bg-sitera-light hover:text-sitera-primary rounded-md transition-colors">
+                                    {{ subcategory.name }}
+                                    <span class="text-xs text-gray-400 ml-1">({{ subcategory.products.count }})</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                    {% empty %}
+                    <li class="text-gray-500 text-center py-4">Категории не найдены</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div> {% endcomment %}
+        
+        <!-- Основной контент с карточками категорий -->
+        <div class="w-full">
+            <!-- Фильтры и сортировка -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border border-sitera-border">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <h2 class="text-lg font-semibold text-gray-800">Каталог оборудования</h2>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                            {{ categories.count }} категорий
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- Переключатель вида -->
+                        <div class="flex bg-gray-100 rounded-lg p-1">
+                            <button class="view-btn px-3 py-1 text-sm font-medium bg-sitera-primary text-white rounded-md transition-colors" data-view="grid">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                                </svg>
+                            </button>
+                            <button class="view-btn px-3 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-md transition-colors" data-view="list">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Сортировка -->
+                        <div class="flex items-center space-x-2">
+                            <label class="text-sm font-medium text-gray-700">Сортировка:</label>
+                            <select id="sort-select" class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
+                                <option value="default">По умолчанию</option>
+                                <option value="name">По названию</option>
+                                <option value="popular">По популярности</option>
+                                <option value="newest">По новизне</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сетка категорий -->
+            <div id="categories-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}" class="category-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group border border-sitera-border block">
+                    <div class="relative h-48 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}"
+                                 alt="{{ category.get_image_alt_text }}"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-sitera-light to-sitera-hover">
+                                <svg class="w-16 h-16 text-sitera-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Бейдж с количеством товаров -->
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-md">
+                            <span class="text-xs font-medium text-sitera-primary">{{ category.products.count }} шт.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-sitera-primary transition-colors">
+                            {{ category.name }}
+                        </h3>
+                        
+                        {% if category.description %}
+                            <p class="text-sm text-gray-600 mb-4 line-clamp-2">{{ category.description|truncatewords:15 }}</p>
+                        {% endif %}
+                        
+                    </div>
+                </a>
+                {% empty %}
+                <div class="col-span-full text-center py-16">
+                    <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <p class="text-gray-500 text-lg font-medium">Категории пока не добавлены</p>
+                    <p class="text-gray-400 text-sm mt-2">Попробуйте вернуться позже</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Список категорий (скрыт по умолчанию) -->
+            <div id="categories-list" class="space-y-4 hidden">
+                {% for category in categories %}
+                <div class="category-list-item bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-sitera-border">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-20 h-20 bg-gradient-to-br from-sitera-light to-white rounded-lg overflow-hidden flex-shrink-0">
+                            {% if category.image %}
+                                <img src="{{ category.image.url }}" alt="{{ category.get_image_alt_text }}" class="w-full h-full object-cover">
+                            {% else %}
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-sitera-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">{{ category.name }}</h3>
+                            {% if category.description %}
+                                <p class="text-sm text-gray-600 mb-2">{{ category.description|truncatewords:20 }}</p>
+                            {% endif %}
+                            <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                <span>{{ category.products.count }} товаров</span>
+                                {% if category.children.exists %}
+                                    <span>{{ category.children.count }} подкатегорий</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            {% if category.children.exists %}
+                                <button onclick="toggleSubcategories({{ category.id }})"
+                                        class="text-gray-400 hover:text-sitera-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            {% endif %}
+                            <a href="{{ category.get_absolute_url }}"
+                               class="inline-flex items-center px-4 py-2 bg-sitera-primary text-white rounded-lg hover:bg-sitera-secondary transition-colors">
+                                Перейти
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Функция для переключения подкатегорий -->
+<script>
+function toggleSubcategories(categoryId) {
+    const subcategoryList = document.getElementById(`subcategory-${categoryId}`);
+    if (subcategoryList) {
+        subcategoryList.classList.toggle('hidden');
+    }
+}
+</script>
+{% endblock %}

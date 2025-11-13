@@ -1,0 +1,94 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="url(#gradient18)"/>
+  <defs>
+    <linearGradient id="gradient18" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065F46;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Иконка сценических спецэффектов -->
+  <g transform="translate(200, 150)">
+    <!-- Машина дыма -->
+    <rect x="-40" y="-10" width="30" height="20" rx="5" fill="white" opacity="0.9"/>
+    <rect x="-37" y="-7" width="24" height="14" rx="3" fill="#1a1a1a"/>
+    
+    <!-- Дым из машины -->
+    <ellipse cx="-25" cy="-15" rx="8" ry="5" fill="white" opacity="0.3"/>
+    <ellipse cx="-25" cy="-20" rx="10" ry="6" fill="white" opacity="0.2"/>
+    <ellipse cx="-25" cy="-25" rx="12" ry="7" fill="white" opacity="0.1"/>
+    
+    <!-- Кнопки на машине дыма -->
+    <circle cx="-30" cy="0" r="2" fill="#ef4444" opacity="0.8"/>
+    <circle cx="-23" cy="0" r="2" fill="#10b981" opacity="0.8"/>
+    
+    <!-- Машина пузырей -->
+    <rect x="10" y="-10" width="30" height="20" rx="5" fill="white" opacity="0.9"/>
+    <rect x="13" y="-7" width="24" height="14" rx="3" fill="#1a1a1a"/>
+    
+    <!-- Пузыри -->
+    <circle cx="25" cy="-15" r="3" fill="white" opacity="0.6"/>
+    <circle cx="20" cy="-18" r="2" fill="white" opacity="0.5"/>
+    <circle cx="30" cy="-20" r="2.5" fill="white" opacity="0.5"/>
+    <circle cx="25" cy="-23" r="2" fill="white" opacity="0.4"/>
+    <circle cx="18" cy="-22" r="1.5" fill="white" opacity="0.4"/>
+    
+    <!-- Кнопки на машине пузырей -->
+    <circle cx="18" cy="0" r="2" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="25" cy="0" r="2" fill="#10b981" opacity="0.8"/>
+    
+    <!-- Стробоскоп -->
+    <rect x="-5" y="-30" width="10" height="15" rx="3" fill="white" opacity="0.9"/>
+    <rect x="-3" y="-28" width="6" height="11" rx="2" fill="#1a1a1a"/>
+    
+    <!-- Вспышки стробоскопа -->
+    <polygon points="0,-28 -8,-40 8,-40" fill="white" opacity="0.7"/>
+    <polygon points="0,-28 -6,-35 6,-35" fill="white" opacity="0.5"/>
+    
+    <!-- Лазер -->
+    <g transform="translate(0, 15)">
+      <rect x="-8" y="-5" width="16" height="10" rx="3" fill="white" opacity="0.9"/>
+      <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#1a1a1a"/>
+      
+      <!-- Лазерные лучи -->
+      <line x1="0" y1="-3" x2="0" y2="-20" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+      <line x1="0" y1="-3" x2="-10" y2="-15" stroke="#10b981" stroke-width="1" opacity="0.8"/>
+      <line x1="0" y1="-3" x2="10" y2="-15" stroke="#3b82f6" stroke-width="1" opacity="0.8"/>
+      
+      <!-- Точки лазера -->
+      <circle cx="0" cy="-20" r="1" fill="#ef4444" opacity="0.9"/>
+      <circle cx="-10" cy="-15" r="1" fill="#10b981" opacity="0.9"/>
+      <circle cx="10" cy="-15" r="1" fill="#3b82f6" opacity="0.9"/>
+    </g>
+    
+    <!-- Снежная машина -->
+    <g transform="translate(-60, 10)">
+      <rect x="-8" y="-5" width="16" height="10" rx="3" fill="white" opacity="0.9"/>
+      <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#1a1a1a"/>
+      
+      <!-- Снежинки -->
+      <g transform="translate(0, -8)">
+        
+        
+        
+      </g>
+    </g>
+    
+    <!-- Пульт управления -->
+    <g transform="translate(60, 10)">
+      <rect x="-8" y="-5" width="16" height="10" rx="3" fill="white" opacity="0.9"/>
+      <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#1a1a1a"/>
+      
+      <!-- Кнопки на пульте -->
+      <circle cx="-3" cy="0" r="1" fill="#ef4444" opacity="0.8"/>
+      <circle cx="0" cy="0" r="1" fill="#10b981" opacity="0.8"/>
+      <circle cx="3" cy="0" r="1" fill="#3b82f6" opacity="0.8"/>
+      
+      <!-- Антенна -->
+      <line x1="0" y1="-5" x2="0" y2="-10" stroke="white" stroke-width="1" opacity="0.7"/>
+      <circle cx="0" cy="-10" r="1" fill="white" opacity="0.8"/>
+    </g>
+  </g>
+  
+  
+</svg>
