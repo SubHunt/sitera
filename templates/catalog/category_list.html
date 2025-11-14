@@ -101,7 +101,7 @@
                         </div>
                         
                         <!-- Сортировка -->
-                        <div class="flex items-center space-x-2">
+                        {% comment %} <div class="flex items-center space-x-2">
                             <label class="text-sm font-medium text-gray-700">Сортировка:</label>
                             <select id="sort-select" class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
                                 <option value="default">По умолчанию</option>
@@ -109,7 +109,7 @@
                                 <option value="popular">По популярности</option>
                                 <option value="newest">По новизне</option>
                             </select>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
             <div id="categories-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {% for category in categories %}
                 <a href="{{ category.get_absolute_url }}" class="category-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group border border-sitera-border block">
-                    <div class="relative h-48 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
+                    <div class="relative h-40 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
                         {% if category.image %}
                             <img src="{{ category.image.url }}"
                                  alt="{{ category.get_image_alt_text }}"

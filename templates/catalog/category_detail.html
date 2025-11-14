@@ -87,15 +87,15 @@
     <!-- Фильтры и сортировка -->
     <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border border-sitera-border">
         <div class="flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center space-x-4">
+            {% comment %} <div class="flex items-center space-x-4">
                 <h3 class="text-lg font-semibold text-gray-800">Фильтры</h3>
                 <button id="reset-filters" class="text-sm text-sitera-primary hover:text-sitera-secondary transition-colors">
                     Сбросить все
                 </button>
-            </div>
+            </div> {% endcomment %}
             
             <div class="flex flex-wrap items-center gap-4">
-                <div class="flex items-center space-x-2">
+                {% comment %} <div class="flex items-center space-x-2">
                     <label class="text-sm font-medium text-gray-700">Наличие:</label>
                     <select id="availability-filter" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sitera-primary focus:border-transparent">
                         <option value="">Все товары</option>
@@ -113,7 +113,7 @@
                         <option value="-title">По названию Я-А</option>
                         <option value="-views_count">По популярности</option>
                     </select>
-                </div>
+                </div> {% endcomment %}
 
                 <!-- Переключатель вида -->
                 <div class="flex bg-gray-100 rounded-lg p-1">
@@ -148,7 +148,7 @@
             {% for product in products %}
             <a href="{{ product.get_absolute_url }}" class="product-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group border border-sitera-border block"
                  data-availability="{{ product.availability }}">
-                <div class="relative h-48 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
+                <div class="relative h-80 bg-gradient-to-br from-sitera-light to-white overflow-hidden">
                     {% if product.preview_image %}
                         <img src="{{ product.preview_image.url }}"
                              alt="{{ product.get_preview_image_alt_text }}"
@@ -212,7 +212,7 @@
             {% for product in products %}
             <a href="{{ product.get_absolute_url }}" class="product-list-item bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-sitera-border block">
                 <div class="flex items-center space-x-4">
-                    <div class="w-24 h-24 bg-gradient-to-br from-sitera-light to-white rounded-lg overflow-hidden flex-shrink-0">
+                    <div class="w-20 h-20 bg-gradient-to-br from-sitera-light to-white rounded-lg overflow-hidden flex-shrink-0">
                         {% if product.preview_image %}
                             <img src="{{ product.preview_image.url }}" alt="{{ product.get_preview_image_alt_text }}" class="w-full h-full object-cover">
                         {% else %}
