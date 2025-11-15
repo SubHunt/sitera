@@ -64,19 +64,19 @@
             {% if images %}
             <div class="grid grid-cols-4 gap-2">
                 {% if product.preview_image %}
-                    <div class="cursor-pointer border-2 border-sitera-primary rounded p-1">
+                    <div class="thumbnail-item cursor-pointer border-2 border-sitera-primary rounded p-1">
                         <img src="{{ product.preview_image.url }}"
                              alt="{{ product.get_preview_image_alt_text }}"
                              class="w-full h-20 object-cover rounded"
-                             onclick="changeMainImage('{{ product.preview_image.url }}')">
+                             onclick="changeMainImage('{{ product.preview_image.url }}', this.parentElement)">
                     </div>
                 {% endif %}
                 {% for image in images %}
-                    <div class="cursor-pointer border-2 border-gray-200 hover:border-sitera-primary rounded p-1 transition-colors">
+                    <div class="thumbnail-item cursor-pointer border-2 border-gray-200 hover:border-sitera-primary rounded p-1 transition-colors">
                         <img src="{{ image.image.url }}"
                              alt="{{ image.get_alt_text }}"
                              class="w-full h-20 object-cover rounded"
-                             onclick="changeMainImage('{{ image.image.url }}')">
+                             onclick="changeMainImage('{{ image.image.url }}', this.parentElement)">
                     </div>
                 {% endfor %}
             </div>
@@ -299,8 +299,19 @@
 </div>
 
 <script>
-function changeMainImage(imageUrl) {
+function changeMainImage(imageUrl, element) {
+    // Change the main image
     document.getElementById('main-image').src = imageUrl;
+    
+    // Remove active border from all thumbnails
+    document.querySelectorAll('.thumbnail-item').forEach(item => {
+        item.classList.remove('border-sitera-primary');
+        item.classList.add('border-gray-200');
+    });
+    
+    // Add active border to clicked thumbnail
+    element.classList.remove('border-gray-200');
+    element.classList.add('border-sitera-primary');
 }
 
 function showTab(tabName) {
