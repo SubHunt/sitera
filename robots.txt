@@ -1,0 +1,7 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://sitera.kz/sitemap.xml
+
+# Favicons
+Favicon: /favicon.ico
